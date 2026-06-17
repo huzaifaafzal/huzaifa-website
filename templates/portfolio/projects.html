@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="page-hero section">
-  <p class="eyebrow">Projects</p>
-  <h1>Technical projects and case studies</h1>
+<section class="page-hero section reveal">
+  <p class="eyebrow">Systems Portfolio</p>
+  <h1>Technical projects as operational evidence.</h1>
   <p class="lead">Admin-managed work samples covering Django, cloud infrastructure, Kubernetes, disaster recovery, cost optimization, and technical communication.</p>
 </section>
-<section class="section">
+<section class="section systems-section reveal">
   <div class="project-grid">
     {% for project in projects %}
-      <article class="project-card">
-        <div class="visual-panel"><span>{{ project.project_type }}</span></div>
-        <h2><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h2>
-        <p>{{ project.short_description }}</p>
-        <div class="chip-row">{% for tech in project.technologies %}<span>{{ tech }}</span>{% endfor %}</div>
+      <article class="project-card magnetic-card">
+        <a class="card-cover" href="{{ project.get_absolute_url }}" aria-label="Open {{ project.title }}">
+          <div class="visual-panel"><span>{{ project.project_type }}</span><i></i><i></i><i></i></div>
+          <div class="project-body">
+            <h2>{{ project.title }}</h2>
+            <p>{{ project.short_description }}</p>
+            <div class="chip-row">{% for tech in project.technologies %}<span>{{ tech }}</span>{% endfor %}</div>
+          </div>
+        </a>
       </article>
     {% endfor %}
   </div>

@@ -1,24 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="page-hero section">
-  <p class="eyebrow">About</p>
+<section class="page-hero section reveal">
+  <p class="eyebrow">Profile Dossier</p>
   <h1>{{ profile.full_name }}</h1>
   <p class="lead">{{ profile.long_bio }}</p>
+  <div class="page-signal-grid">
+    <span>Cloud infrastructure</span>
+    <span>Cybersecurity leadership</span>
+    <span>Technical journalism</span>
+    <span>Legal analysis</span>
+  </div>
 </section>
-<section class="section split">
-  <div class="section-heading"><h2>Education</h2></div>
+<section class="section identity-section reveal">
+  <div class="section-heading sticky-heading">
+    <p class="eyebrow">Education</p>
+    <h2>Academic signal behind the work.</h2>
+  </div>
   <div class="stack-list">
     {% for item in education %}
-      <article><h3>{{ item.degree }}</h3><strong>{{ item.school }}</strong><p>{{ item.description }}</p></article>
+      <article class="magnetic-card"><h3>{{ item.degree }}</h3><strong>{{ item.school }}</strong><p>{{ item.description }}</p></article>
     {% endfor %}
   </div>
 </section>
-<section class="section split">
-  <div class="section-heading"><h2>Certifications</h2></div>
+<section class="section identity-section reveal">
+  <div class="section-heading sticky-heading">
+    <p class="eyebrow">Certifications</p>
+    <h2>Verified cloud and security learning.</h2>
+  </div>
   <div class="stack-list">
     {% for item in certifications %}
-      <article><h3>{{ item.name }}</h3><strong>{{ item.issuer }}</strong></article>
+      <article class="magnetic-card"><h3>{{ item.name }}</h3><strong>{{ item.issuer }}</strong></article>
     {% endfor %}
   </div>
 </section>

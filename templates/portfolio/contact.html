@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="page-hero section">
-  <p class="eyebrow">Contact</p>
+<section class="page-hero section reveal">
+  <p class="eyebrow">Contact Channel</p>
   <h1>Start a focused conversation.</h1>
   <p class="lead">Recruiters, founders, technical leaders, editors, and professional contacts can reach Huzaifa here.</p>
 </section>
-<section class="section contact-layout">
+<section class="section contact-layout reveal">
   <form class="contact-form" method="post" novalidate>
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -18,9 +18,9 @@
     <button class="button primary" type="submit">Send Message</button>
   </form>
   <aside class="contact-cards">
-    {% if profile.email %}<article><span>Email</span><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></article>{% endif %}
-    {% if profile.linkedin_url %}<article><span>LinkedIn</span><a href="{{ profile.linkedin_url }}" rel="noopener">Connect on LinkedIn</a></article>{% endif %}
-    {% if profile.github_url %}<article><span>GitHub</span><a href="{{ profile.github_url }}" rel="noopener">View GitHub</a></article>{% endif %}
+    {% if profile.email %}<article class="magnetic-card"><span>Email</span><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></article>{% endif %}
+    {% if profile.linkedin_url %}<article class="magnetic-card"><span>LinkedIn</span><a href="{{ profile.linkedin_url }}" rel="noopener">Connect on LinkedIn</a></article>{% endif %}
+    {% if profile.github_url %}<article class="magnetic-card"><span>GitHub</span><a href="{{ profile.github_url }}" rel="noopener">View GitHub</a></article>{% endif %}
   </aside>
 </section>
 {% endblock %}
