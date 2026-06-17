@@ -17,7 +17,7 @@ const setTheme = (theme) => {
   }
 
   try {
-    localStorage.setItem("portfolio-theme", theme);
+    localStorage.setItem("portfolio-theme-v2", theme);
   } catch (error) {
     // Theme still works for the current session if storage is unavailable.
   }
