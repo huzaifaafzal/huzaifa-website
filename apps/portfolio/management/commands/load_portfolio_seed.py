@@ -71,7 +71,7 @@ class Command(BaseCommand):
                     "AWS",
                     "Terraform",
                     "Kubernetes",
-                    "Django",
+                    "DevOps",
                     "Cybersecurity",
                     "UW MCL",
                     "Technical Writing",

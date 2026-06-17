@@ -48,14 +48,6 @@
     </aside>
   </div>
 
-  <div class="telemetry-rail" aria-label="Deployment telemetry">
-    <span>terraform plan</span>
-    <span>aws iam review</span>
-    <span>django admin content</span>
-    <span>coolify deploy</span>
-    <span>postgres attached</span>
-    <span>whitenoise static</span>
-  </div>
 </section>
 
 <section class="trust-bar reveal" aria-label="Key strengths">
@@ -91,7 +83,7 @@
   <div class="identity-grid">
     <article class="identity-card magnetic-card"><span>01</span><h3>Cloud Infrastructure Engineer</h3><p>Builds production-minded AWS systems, Terraform workflows, monitoring, deployment paths, and reliability patterns.</p></article>
     <article class="identity-card magnetic-card"><span>02</span><h3>Cybersecurity & Leadership</h3><p>Frames infrastructure decisions through access control, secure AI adoption, risk, governance, and operational maturity.</p></article>
-    <article class="identity-card magnetic-card"><span>03</span><h3>Django Builder</h3><p>Turns professional narrative into Admin-managed platforms with clean models, forms, deployment, and maintenance paths.</p></article>
+    <article class="identity-card magnetic-card"><span>03</span><h3>DevOps / Platform Engineer</h3><p>Builds CI/CD automation, infrastructure workflows, observability paths, runbooks, and developer-enabling cloud platforms.</p></article>
     <article class="identity-card magnetic-card"><span>04</span><h3>Technical Writer / AI Reporter</h3><p>Converts complex technical systems, AI initiatives, and institutional stories into clear, structured, high-trust writing.</p></article>
   </div>
 </section>
@@ -153,7 +145,7 @@
     <div class="skill-stage" aria-label="Interactive skill controls">
       {% for category in skill_categories %}
         {% for skill in category.skills.all|slice:":4" %}
-          <button class="skill-key" type="button" data-skill-title="{{ skill.name }}" data-skill-copy="{{ category.description|default:'Core portfolio capability managed from Django Admin.' }}">
+          <button class="skill-key" type="button" data-skill-title="{{ skill.name }}" data-skill-copy="{{ category.description|default:'Core portfolio capability.' }}">
             <span>{{ skill.name }}</span>
           </button>
         {% endfor %}

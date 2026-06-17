@@ -139,7 +139,7 @@ class ContactView(PortfolioContextMixin, FormView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, "Thanks. Your message has been saved and Huzaifa can follow up from Django Admin.")
+        messages.success(self.request, "Thanks. Your message has been saved and Huzaifa can follow up from the site dashboard.")
         return super().form_valid(form)
 
 
