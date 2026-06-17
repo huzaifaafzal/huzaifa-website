@@ -18,8 +18,8 @@
   <script>
     (function () {
       try {
-        var storedTheme = localStorage.getItem("portfolio-theme");
-        var theme = storedTheme || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        var storedTheme = localStorage.getItem("portfolio-theme-v2");
+        var theme = storedTheme || "dark";
         document.documentElement.dataset.theme = theme;
       } catch (error) {
         document.documentElement.dataset.theme = "dark";
