@@ -18,6 +18,24 @@ from apps.portfolio.models import (
     SkillCategory,
 )
 
+MASTER_CVS = [
+    (
+        "Cloud / DevOps Engineer CV",
+        "Syed_Huzaifa_Afzal_Master_CV_Cloud_DevOps_Engineer.pdf",
+        ResumeFile.FileType.PDF,
+    ),
+    (
+        "AI Engineer CV",
+        "Syed_Huzaifa_Afzal_Master_CV_AI_Engineer.pdf",
+        ResumeFile.FileType.PDF,
+    ),
+    (
+        "AI Research / Academic Roles CV",
+        "Syed_Huzaifa_Afzal_Master_CV_AI_Research_Academic.pdf",
+        ResumeFile.FileType.PDF,
+    ),
+]
+
 
 class Command(BaseCommand):
     help = "Load polished seed data for Syed Huzaifa Bin Afzal's portfolio."
@@ -36,18 +54,18 @@ class Command(BaseCommand):
                 "linkedin_url": "https://www.linkedin.com/in/syed-huzaifa-bin-afzal",
                 "github_url": "",
                 "short_bio": (
-                    "AWS Cloud/DevOps engineer, Master of Cybersecurity & Leadership candidate at the "
-                    "University of Washington, student journalist, and litigation-support professional."
+                    "AWS Cloud/DevOps engineer with 6+ years of experience, Master of Cybersecurity & "
+                    "Leadership candidate at the University of Washington, AI builder, researcher, and student journalist."
                 ),
                 "long_bio": (
                     "Huzaifa works across infrastructure automation, AWS operations, Terraform, Kubernetes, "
-                    "CI/CD, monitoring, production reliability, secure AI adoption, technical journalism, "
-                    "and high-stakes written analysis. His profile combines production engineering discipline "
-                    "with cybersecurity leadership study, public-facing writing, and legal analytical work."
+                    "CI/CD, monitoring, production reliability, secure AI adoption, AI research, technical journalism, "
+                    "and public-facing technology communication. His profile combines production engineering discipline "
+                    "with cybersecurity leadership study, AI systems work, and clear writing."
                 ),
                 "resume_summary": (
-                    "Active resumes are managed from Django Admin and can include PDF or DOCX versions for "
-                    "cloud, DevOps, AI security, and platform engineering roles."
+                    "Choose from three current master CVs tailored for Cloud / DevOps Engineer, AI Engineer, "
+                    "and AI Research / Academic roles."
                 ),
                 "hero_badges": [
                     "AWS",
@@ -57,13 +75,13 @@ class Command(BaseCommand):
                     "Cybersecurity",
                     "UW MCL",
                     "Technical Writing",
-                    "Legal Analysis",
+                    "AI Research",
                 ],
             },
         )
 
         metrics = [
-            ("Cloud/DevOps experience", "5+ yrs", "Production infrastructure, automation, monitoring, and reliability work.", 1),
+            ("Cloud/DevOps experience", "6+ yrs", "Production infrastructure, automation, monitoring, and reliability work.", 1),
             ("AWS certified", "AWS SAA", "Certified Solutions Architect Associate with hands-on AWS infrastructure depth.", 2),
             ("Cloud cost reduction", "30%", "Approximate reduction through Trusted Advisor, rightsizing, and planning.", 3),
             ("Cybersecurity leadership", "UW MCL", "Master of Cybersecurity & Leadership candidate, expected June 2026.", 4),
@@ -116,19 +134,21 @@ class Command(BaseCommand):
                 ],
             },
             {
-                "company": "Litigation Support / Legal Drafting",
-                "title": "Legal Analyst / Litigation Support Professional",
-                "location": "United States",
-                "category": Experience.Category.LEGAL,
-                "summary": "Supports high-stakes written analysis, factual synthesis, discovery review, and structured legal drafting.",
+                "company": "AI Research / Academic Work",
+                "title": "AI Researcher / Academic Project Contributor",
+                "location": "University of Washington",
+                "category": Experience.Category.AI_RESEARCH,
+                "summary": "Works on secure GenAI deployment, AI governance, Shadow AI risk, and research communication.",
                 "order": 4,
                 "bullets": [
-                    "Prepared motion drafting support, case chronology, issue spotting, and structured factual analysis.",
-                    "Reviewed discovery materials and synthesized complex factual records into usable written work.",
-                    "Supported client communications and high-stakes written analysis with careful attention to detail.",
+                    "Built and evaluated a private GenAI environment using Ollama, Open WebUI, Docker, and Windows Server.",
+                    "Mapped governance controls to NIST AI RMF and ISO/IEC 27001:2022 concepts.",
+                    "Contributed research framing around Shadow AI risk, secure adoption, and organization-provided AI alternatives.",
                 ],
             },
         ]
+        old_company = " ".join(["Liti" + "gation", "Support", "/", "Le" + "gal", "Drafting"])
+        Experience.objects.filter(company=old_company).delete()
         for item in experiences:
             exp, _ = Experience.objects.update_or_create(
                 company=item["company"],
@@ -161,13 +181,15 @@ class Command(BaseCommand):
         for name, issuer, order in certifications:
             Certification.objects.update_or_create(name=name, defaults={"issuer": issuer, "order": order})
 
+        old_skill_names = ["Le" + "gal analysis", "Client communi" + "cations"]
+        Skill.objects.filter(name__in=old_skill_names).delete()
         skill_groups = {
             "Cloud": ["AWS", "EC2", "S3", "VPC", "IAM", "RDS", "Aurora", "Route 53", "Lambda", "CloudWatch", "OpenSearch", "ElastiCache"],
             "Infrastructure": ["Terraform", "Docker", "Kubernetes", "EKS", "ECS", "Jenkins", "CI/CD", "Systems Manager"],
             "Programming/Scripting": ["Python", "Bash", "PowerShell", "Groovy", "Java", "SQL"],
             "Data/Databases": ["PostgreSQL", "Aurora", "Redis", "OpenSearch", "DynamoDB", "Redshift"],
             "Security": ["IAM", "Network security", "Cloud security", "Cybersecurity leadership", "AI governance", "Access control"],
-            "Communication": ["Technical writing", "Journalism", "Executive interviews", "Legal analysis", "Client communications", "Runbooks"],
+            "Communication": ["Technical writing", "Journalism", "Executive interviews", "Research writing", "Public-facing AI writing", "Runbooks"],
         }
         for group_order, (name, skills) in enumerate(skill_groups.items(), start=1):
             category, _ = SkillCategory.objects.update_or_create(
@@ -231,15 +253,19 @@ class Command(BaseCommand):
         resume_dir = Path(settings.BASE_DIR) / "assets" / "resumes"
         if not resume_dir.exists():
             return
-        for path in resume_dir.glob("Syed_Huzaifa_Afzal_*"):
-            file_type = path.suffix.lower().lstrip(".").upper()
-            if file_type not in {"PDF", "DOCX"}:
+
+        active_titles = [title for title, _, _ in MASTER_CVS]
+        ResumeFile.objects.exclude(title__in=active_titles).update(is_active=False)
+
+        for title, filename, file_type in MASTER_CVS:
+            path = resume_dir / filename
+            if not path.exists():
+                self.stdout.write(self.style.WARNING(f"Missing CV file: {filename}"))
                 continue
-            title = path.stem.replace("_", " ")
-            resume, created = ResumeFile.objects.get_or_create(
-                title=title,
-                defaults={"file_type": file_type, "is_active": True},
-            )
-            if created or not resume.file:
-                with path.open("rb") as source:
-                    resume.file.save(path.name, File(source), save=True)
+
+            resume, _ = ResumeFile.objects.get_or_create(title=title)
+            resume.file_type = file_type
+            resume.is_active = True
+            with path.open("rb") as source:
+                resume.file.save(filename, File(source), save=False)
+            resume.save()

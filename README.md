@@ -59,7 +59,11 @@ Premium dynamic portfolio for **Syed Huzaifa Bin Afzal**. The site is now a Djan
 `-- DEPLOYMENT.md
 ```
 
-The `assets/` folder is intentionally kept. It provides the existing abstract visual and resume files used by the app and seed command.
+The `assets/` folder is intentionally kept. It provides the abstract visual and the three active master CV files used by the app and seed command:
+
+- `Syed_Huzaifa_Afzal_Master_CV_Cloud_DevOps_Engineer.pdf`
+- `Syed_Huzaifa_Afzal_Master_CV_AI_Engineer.pdf`
+- `Syed_Huzaifa_Afzal_Master_CV_AI_Research_Academic.pdf`
 
 ## Environment Variables
 
@@ -137,7 +141,7 @@ It creates or updates:
 - Skill categories and skills
 - Featured projects
 - Writing samples
-- Resume file records from `assets/resumes/`
+- Three active resume/CV records from `assets/resumes/`: Cloud / DevOps Engineer, AI Engineer, and AI Research / Academic Roles
 
 In Coolify, set `LOAD_SEED_DATA=1` for the first deployment. After the data appears, set it to `0` so later deploys do not refresh seed-managed records.
 

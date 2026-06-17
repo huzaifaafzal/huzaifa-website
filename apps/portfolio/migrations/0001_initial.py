@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
                 ("end_date", models.DateField(blank=True, null=True)),
                 ("is_current", models.BooleanField(default=False)),
                 ("summary", models.TextField()),
-                ("category", models.CharField(choices=[("cloud", "Cloud / DevOps"), ("journalism", "Writing / Journalism"), ("legal", "Legal / Litigation Support"), ("security", "Cybersecurity")], default="cloud", max_length=30)),
+                ("category", models.CharField(choices=[("cloud", "Cloud / DevOps"), ("journalism", "Writing / Journalism"), ("ai_research", "AI Research / Academic"), ("security", "Cybersecurity")], default="cloud", max_length=30)),
             ],
             options={"ordering": ["order", "id"]},
         ),
