@@ -3,12 +3,18 @@
 
 {% block content %}
 <section class="hero section-band">
+  <canvas class="hero-canvas" data-network-canvas aria-hidden="true"></canvas>
   <div class="hero-grid">
-    <div class="hero-copy">
+    <div class="hero-copy reveal-panel">
       <p class="eyebrow">Cloud command center / Cybersecurity / Technical writing / Legal analysis</p>
       <h1>Cloud, Cybersecurity, and Systems Builder</h1>
       <p class="hero-subhead">{{ profile.subheadline }}</p>
       <p class="lead">{{ profile.short_bio }}</p>
+      <div class="signal-row" aria-label="Live profile signals">
+        <span><strong>01</strong> Production AWS</span>
+        <span><strong>02</strong> Secure AI</span>
+        <span><strong>03</strong> Clear writing</span>
+      </div>
       <div class="hero-badges" aria-label="Profile badges">
         {% for badge in profile.hero_badges %}<span>{{ badge }}</span>{% endfor %}
       </div>
@@ -20,15 +26,39 @@
         {% if profile.github_url %}<a class="icon-button" href="{{ profile.github_url }}" aria-label="GitHub">GH</a>{% endif %}
       </div>
     </div>
-    <aside class="command-card" aria-label="Cloud infrastructure profile summary">
+    <aside class="command-card tilt-card reveal-panel" aria-label="Cloud infrastructure profile summary">
       <img src="{% static 'images/secure-cloud-abstract.png' %}" alt="" width="1600" height="1050" loading="eager">
       <div class="console-line"><span>identity</span><strong>{{ profile.headline }}</strong></div>
-      <div class="console-grid">
-        <span>AWS</span><span>Terraform</span><span>Kubernetes</span><span>Django</span>
-        <span>Security</span><span>Journalism</span><span>Legal Drafting</span><span>UW MCL</span>
+      <div class="orbit-system" aria-hidden="true">
+        <span class="orbit-core">HA</span>
+        <span class="orbit-ring ring-one"></span>
+        <span class="orbit-ring ring-two"></span>
+        <span class="orbit-node node-one">AWS</span>
+        <span class="orbit-node node-two">IaC</span>
+        <span class="orbit-node node-three">SOC</span>
+        <span class="orbit-node node-four">DR</span>
       </div>
-      <p>{{ profile.long_bio }}</p>
+      <div class="console-grid" data-skill-grid>
+        <button type="button" data-skill-title="AWS" data-skill-copy="Production cloud infrastructure, IAM, VPC, RDS, monitoring, cost optimization, and reliability patterns.">AWS</button>
+        <button type="button" data-skill-title="Terraform" data-skill-copy="Reusable infrastructure modules and repeatable provisioning for cloud workloads.">Terraform</button>
+        <button type="button" data-skill-title="Kubernetes" data-skill-copy="Containerized deployment workflows, operational visibility, and platform-oriented delivery.">Kubernetes</button>
+        <button type="button" data-skill-title="Django" data-skill-copy="Admin-managed content, structured data models, forms, and production deployment.">Django</button>
+        <button type="button" data-skill-title="Security" data-skill-copy="Cloud security, access control, secure AI adoption, and cybersecurity leadership.">Security</button>
+        <button type="button" data-skill-title="Journalism" data-skill-copy="Public-facing technology writing, executive interviews, and clear AI communication.">Journalism</button>
+        <button type="button" data-skill-title="Legal Drafting" data-skill-copy="Motion drafting support, factual synthesis, issue spotting, and structured argumentation.">Legal Drafting</button>
+        <button type="button" data-skill-title="UW MCL" data-skill-copy="Master of Cybersecurity & Leadership candidate at the University of Washington.">UW MCL</button>
+      </div>
+      <div class="skill-readout" aria-live="polite">
+        <span id="skill-readout-title">Mission readout</span>
+        <p id="skill-readout-copy">{{ profile.long_bio }}</p>
+      </div>
     </aside>
+  </div>
+  <div class="telemetry-rail" aria-label="Portfolio telemetry">
+    <span>migrate --noinput</span>
+    <span>collectstatic --noinput</span>
+    <span>gunicorn :8000</span>
+    <span>coolify / postgresql / whitenoise</span>
   </div>
 </section>
 
@@ -40,14 +70,14 @@
   <span>Litigation Support</span>
 </section>
 
-<section class="section">
+<section class="section reveal-section">
   <div class="section-heading">
     <p class="eyebrow">Impact Snapshot</p>
     <h2>Signals recruiters can scan in ten seconds.</h2>
   </div>
   <div class="metric-grid">
     {% for metric in metrics %}
-      <article class="metric-card">
+      <article class="metric-card tilt-card">
         <strong>{{ metric.value }}</strong>
         <h3>{{ metric.label }}</h3>
         <p>{{ metric.description }}</p>
@@ -56,7 +86,7 @@
   </div>
 </section>
 
-<section class="section split">
+<section class="section split reveal-section">
   <div class="section-heading">
     <p class="eyebrow">Professional Operating System</p>
     <h2>Four lenses, one coherent profile.</h2>
@@ -69,15 +99,18 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal-section">
   <div class="section-heading wide">
     <p class="eyebrow">Featured Projects</p>
     <h2>Case-study style evidence, managed from Django Admin.</h2>
   </div>
   <div class="project-grid">
     {% for project in projects %}
-      <article class="project-card">
-        <div class="visual-panel"><span>{{ project.project_type }}</span></div>
+      <article class="project-card tilt-card">
+        <div class="visual-panel">
+          <span>{{ project.project_type }}</span>
+          <i></i><i></i><i></i>
+        </div>
         <h3><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h3>
         <p>{{ project.short_description }}</p>
         <div class="chip-row">
@@ -88,7 +121,7 @@
   </div>
 </section>
 
-<section class="section split">
+<section class="section split reveal-section">
   <div class="section-heading">
     <p class="eyebrow">Experience Timeline</p>
     <h2>Production work plus communication depth.</h2>
@@ -109,25 +142,34 @@
   </div>
 </section>
 
-<section class="section split reverse">
+<section class="section skill-lab-section reveal-section">
   <div class="section-heading">
-    <p class="eyebrow">Skills Matrix</p>
-    <h2>Cloud depth without buzzword fog.</h2>
+    <p class="eyebrow">Interactive Skill Deck</p>
+    <h2>A recruiter-friendly control surface for the technical stack.</h2>
+    <p>Hover or focus a key to see how each capability connects to cloud infrastructure, security, communication, and legal analysis.</p>
   </div>
-  <div class="skill-matrix">
-    {% for category in skill_categories %}
-      <article class="skill-card">
-        <h3>{{ category.name }}</h3>
-        <p>{{ category.description }}</p>
-        <div class="chip-row">
-          {% for skill in category.skills.all %}<span>{{ skill.name }}</span>{% endfor %}
-        </div>
-      </article>
-    {% endfor %}
+  <div class="skill-lab">
+    <div class="skill-stage" aria-label="Interactive skill keyboard">
+      {% for category in skill_categories %}
+        {% for skill in category.skills.all|slice:":4" %}
+          <button class="skill-key" type="button" data-skill-title="{{ skill.name }}" data-skill-copy="{{ category.description|default:'Core portfolio capability managed from Django Admin.' }}">
+            <span>{{ skill.name }}</span>
+          </button>
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <aside class="skill-terminal" aria-live="polite">
+      <span>selected capability</span>
+      <h3 id="deck-skill-title">Cloud systems</h3>
+      <p id="deck-skill-copy">Select a key to inspect how the stack supports production engineering, cybersecurity leadership, and clear technical communication.</p>
+      <div class="terminal-bars" aria-hidden="true">
+        <i></i><i></i><i></i>
+      </div>
+    </aside>
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal-section">
   <div class="editorial-band">
     <div>
       <p class="eyebrow">Writing, Journalism, and Legal Analysis</p>
@@ -146,7 +188,7 @@
   </div>
 </section>
 
-<section class="section cta-panel">
+<section class="section cta-panel reveal-section">
   <div>
     <p class="eyebrow">Resume + Contact</p>
     <h2>Ready for recruiter review and technical conversations.</h2>
