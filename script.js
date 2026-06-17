@@ -1,7 +1,59 @@
-const year = document.getElementById("year");
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
+const roleBriefs = {
+  all: {
+    kicker: "All roles",
+    title: "Hybrid cloud, DevOps, SRE, and secure AI profile",
+    copy:
+      "Production AWS operations, Terraform automation, CI/CD, observability, cost optimization, disaster recovery, and secure GenAI research in one portfolio.",
+    resume: "assets/resumes/Syed_Huzaifa_Afzal_Master_AI_DevOps_Resume.pdf"
+  },
+  cloud: {
+    kicker: "Cloud infrastructure",
+    title: "AWS infrastructure, automation, and cost visibility",
+    copy:
+      "Terraform modules, AWS service automation, EMR/ECS work, IAM patterns, cost optimization, S3 Inventory analytics, and production SaaS support.",
+    resume: "assets/resumes/Syed_Huzaifa_Afzal_DevOps_Engineer_CV.pdf"
+  },
+  sre: {
+    kicker: "SRE and operations",
+    title: "Reliability work across monitoring, DR, runbooks, and incident follow-up",
+    copy:
+      "CloudWatch, Datadog, OpenSearch, Redis, disaster recovery readiness, multi-region planning, runbooks, and production troubleshooting.",
+    resume: "assets/resumes/Syed_Huzaifa_Afzal_DevOps_Engineer_CV.pdf"
+  },
+  ai: {
+    kicker: "AI security",
+    title: "Governed private GenAI deployment and Shadow AI research",
+    copy:
+      "GovernAI uses Open WebUI, Ollama, Docker, Windows Server, role-based access, Wireshark validation, and NIST AI RMF / ISO 27001 control mapping.",
+    resume: "assets/resumes/Syed_Huzaifa_Afzal_AI_Engineer_CV.pdf"
+  },
+  platform: {
+    kicker: "Platform engineering",
+    title: "Developer-enabling infrastructure with operational guardrails",
+    copy:
+      "Reusable infrastructure modules, Jenkins automation, Terraform state handling, deployment validation, containerized workloads, and AWS Systems Manager automation.",
+    resume: "assets/resumes/Syed_Huzaifa_Afzal_Master_AI_DevOps_Resume.pdf"
+  },
+  communication: {
+    kicker: "Communication",
+    title: "Technical translation through reporting, interviews, and documentation",
+    copy:
+      "UW reporting, executive interviews, public-facing AI writing, runbooks, stakeholder communication, and practical explanation of AI and infrastructure tradeoffs.",
+    resume: "assets/resumes/Syed_Huzaifa_Afzal_Master_AI_DevOps_Resume.pdf"
+  }
+};
+
+const setText = (selector, text) => {
+  const element = document.querySelector(selector);
+  if (element) element.textContent = text;
+};
+
+const setAttribute = (selector, attribute, value) => {
+  const element = document.querySelector(selector);
+  if (element) element.setAttribute(attribute, value);
+};
+
+setText("#year", new Date().getFullYear());
 
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.getElementById("site-nav");
@@ -23,22 +75,29 @@ if (navToggle && nav) {
 const filterTargets = [...document.querySelectorAll("[data-tags]")];
 const roleTabs = [...document.querySelectorAll(".role-tab")];
 
-roleTabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const activeFilter = tab.dataset.filter || "all";
+const applyRoleFilter = (activeFilter) => {
+  const brief = roleBriefs[activeFilter] || roleBriefs.all;
 
-    roleTabs.forEach((item) => {
-      const isActive = item === tab;
-      item.classList.toggle("active", isActive);
-      item.setAttribute("aria-selected", String(isActive));
-    });
-
-    filterTargets.forEach((target) => {
-      const tags = (target.dataset.tags || "").split(" ");
-      const shouldShow = activeFilter === "all" || tags.includes(activeFilter);
-      target.dataset.hiddenByFilter = String(!shouldShow);
-    });
+  roleTabs.forEach((tab) => {
+    const isActive = tab.dataset.filter === activeFilter;
+    tab.classList.toggle("active", isActive);
+    tab.setAttribute("aria-selected", String(isActive));
   });
+
+  filterTargets.forEach((target) => {
+    const tags = (target.dataset.tags || "").split(" ");
+    const shouldShow = activeFilter === "all" || tags.includes(activeFilter);
+    target.dataset.hiddenByFilter = String(!shouldShow);
+  });
+
+  setText("#role-kicker", brief.kicker);
+  setText("#role-title", brief.title);
+  setText("#role-copy", brief.copy);
+  setAttribute("#role-resume", "href", brief.resume);
+};
+
+roleTabs.forEach((tab) => {
+  tab.addEventListener("click", () => applyRoleFilter(tab.dataset.filter || "all"));
 });
 
 document.querySelectorAll(".timeline-summary").forEach((button) => {
@@ -52,117 +111,64 @@ document.querySelectorAll(".timeline-summary").forEach((button) => {
   });
 });
 
+const skillSearch = document.getElementById("skill-search");
+const skillGroups = [...document.querySelectorAll(".skill-group")];
+
+if (skillSearch) {
+  skillSearch.addEventListener("input", () => {
+    const query = skillSearch.value.trim().toLowerCase();
+
+    skillGroups.forEach((group) => {
+      const chips = [...group.querySelectorAll(".chips span")];
+      let visibleCount = 0;
+
+      chips.forEach((chip) => {
+        const isMatch = !query || chip.textContent.toLowerCase().includes(query);
+        chip.dataset.hiddenBySearch = String(!isMatch);
+        if (isMatch) visibleCount += 1;
+      });
+
+      group.dataset.noSkillMatch = String(query && visibleCount === 0);
+    });
+  });
+}
+
+document.querySelectorAll("[data-copy]").forEach((button) => {
+  button.addEventListener("click", async () => {
+    const value = button.dataset.copy;
+    if (!value) return;
+
+    try {
+      await navigator.clipboard.writeText(value);
+      button.textContent = "Email copied";
+    } catch {
+      button.textContent = value;
+    }
+
+    window.setTimeout(() => {
+      button.textContent = "Copy email";
+    }, 1800);
+  });
+});
+
 const navLinks = [...document.querySelectorAll("nav a[href^='#']")];
-const sections = navLinks
+const observedSections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach((link) => {
-        link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+if (typeof IntersectionObserver !== "undefined") {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+        });
       });
-    });
-  },
-  { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 }
-);
+    },
+    { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 }
+  );
 
-sections.forEach((section) => observer.observe(section));
-
-const canvas = document.getElementById("systems-map");
-const context = canvas?.getContext("2d");
-
-if (canvas && context) {
-  const nodes = [
-    { label: "AWS", x: 0.2, y: 0.28, color: "#58d6c9" },
-    { label: "Terraform", x: 0.45, y: 0.18, color: "#88b7ff" },
-    { label: "CI/CD", x: 0.72, y: 0.3, color: "#f0c766" },
-    { label: "SRE", x: 0.78, y: 0.58, color: "#58d6c9" },
-    { label: "GovernAI", x: 0.5, y: 0.66, color: "#ff8a6b" },
-    { label: "NIST AI RMF", x: 0.25, y: 0.68, color: "#88b7ff" }
-  ];
-
-  const links = [
-    [0, 1],
-    [1, 2],
-    [2, 3],
-    [3, 4],
-    [4, 5],
-    [5, 0],
-    [1, 4]
-  ];
-
-  const resizeCanvas = () => {
-    const rect = canvas.getBoundingClientRect();
-    const ratio = window.devicePixelRatio || 1;
-    canvas.width = Math.max(1, Math.floor(rect.width * ratio));
-    canvas.height = Math.max(1, Math.floor(rect.height * ratio));
-    context.setTransform(ratio, 0, 0, ratio, 0, 0);
-  };
-
-  const draw = (time = 0) => {
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    context.clearRect(0, 0, width, height);
-
-    const pulse = (Math.sin(time / 900) + 1) / 2;
-    context.fillStyle = "rgba(88, 214, 201, 0.04)";
-    context.fillRect(0, 0, width, height);
-
-    links.forEach(([from, to], index) => {
-      const a = nodes[from];
-      const b = nodes[to];
-      const ax = a.x * width;
-      const ay = a.y * height;
-      const bx = b.x * width;
-      const by = b.y * height;
-      context.beginPath();
-      context.moveTo(ax, ay);
-      context.lineTo(bx, by);
-      context.strokeStyle = `rgba(215, 228, 231, ${0.14 + pulse * 0.08})`;
-      context.lineWidth = 1.2;
-      context.stroke();
-
-      const progress = ((time / 1600 + index * 0.17) % 1);
-      context.beginPath();
-      context.arc(ax + (bx - ax) * progress, ay + (by - ay) * progress, 3, 0, Math.PI * 2);
-      context.fillStyle = "rgba(88, 214, 201, 0.8)";
-      context.fill();
-    });
-
-    nodes.forEach((node, index) => {
-      const x = node.x * width;
-      const y = node.y * height + Math.sin(time / 900 + index) * 5;
-
-      context.beginPath();
-      context.arc(x, y, 42, 0, Math.PI * 2);
-      context.fillStyle = "rgba(8, 16, 22, 0.86)";
-      context.fill();
-      context.strokeStyle = node.color;
-      context.lineWidth = 2;
-      context.stroke();
-
-      context.beginPath();
-      context.arc(x, y, 50 + pulse * 5, 0, Math.PI * 2);
-      context.strokeStyle = `${node.color}33`;
-      context.lineWidth = 1;
-      context.stroke();
-
-      context.fillStyle = "#f6fbfc";
-      context.font = "700 12px Inter, sans-serif";
-      context.textAlign = "center";
-      context.textBaseline = "middle";
-      context.fillText(node.label, x, y);
-    });
-
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      requestAnimationFrame(draw);
-    }
-  };
-
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-  draw();
+  observedSections.forEach((section) => observer.observe(section));
 }

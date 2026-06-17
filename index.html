@@ -1,13 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Syed Huzaifa Bin Afzal portfolio for cloud infrastructure, DevOps, SRE, and secure AI systems roles."
+    content="Syed Huzaifa Bin Afzal - cloud infrastructure, DevOps, SRE, platform engineering, and secure AI systems portfolio."
   />
+  <meta name="theme-color" content="#081016" />
   <title>Syed Huzaifa Bin Afzal | Cloud, DevOps, SRE & Secure AI</title>
+  <link rel="preload" as="image" href="assets/images/secure-cloud-ai-systems.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -22,11 +24,11 @@
       Menu
     </button>
     <nav id="site-nav" aria-label="Primary navigation">
-      <a href="#about">About</a>
+      <a href="#proof">Proof</a>
+      <a href="#roles">Roles</a>
+      <a href="#case-studies">Case Studies</a>
       <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#writing">Writing</a>
+      <a href="#stack">Stack</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -34,14 +36,13 @@
   <main id="main">
     <section id="top" class="hero section">
       <div class="hero-copy">
-        <p class="eyebrow">Tacoma, Washington Â· Open to AI, cloud, DevOps, SRE, and platform roles</p>
+        <p class="eyebrow">Tacoma, Washington / AI security / Cloud infrastructure / DevOps / SRE</p>
         <h1>Syed Huzaifa Bin Afzal</h1>
         <p class="headline">Cloud Infrastructure, DevOps, SRE, and Secure AI Systems</p>
         <p class="lead">
-          I build and support reliable cloud infrastructure, automation, and secure AI systems. My
-          background combines production AWS SaaS operations, Terraform-based infrastructure, CI/CD,
-          monitoring, incident response, and graduate work in cybersecurity and AI governance at the
-          University of Washington.
+          I build reliable cloud platforms and governed AI systems. My background combines 6+ years
+          in production AWS and DevOps work with graduate research in cybersecurity, Shadow AI risk,
+          private GenAI deployment, and AI governance at the University of Washington.
         </p>
         <div class="button-row hero-actions" aria-label="Primary actions">
           <a class="button primary" href="assets/resumes/Syed_Huzaifa_Afzal_AI_Engineer_CV.pdf" download>
@@ -50,144 +51,255 @@
           <a class="button" href="assets/resumes/Syed_Huzaifa_Afzal_DevOps_Engineer_CV.pdf" download>
             Download DevOps Resume
           </a>
+          <a class="button ghost" href="#case-studies">View Case Studies</a>
           <a class="button ghost" href="mailto:huzaifaafzal10@gmail.com">Contact</a>
-          <a class="button ghost" href="https://www.linkedin.com/in/syed-huzaifa-bin-afzal">LinkedIn</a>
         </div>
       </div>
 
-      <aside class="hero-panel" aria-label="Interactive profile snapshot">
-        <canvas id="systems-map" width="640" height="520" aria-label="Animated cloud and AI systems map"></canvas>
-        <div class="panel-content">
-          <p class="panel-kicker">Profile signal</p>
-          <h2>Infrastructure depth with AI governance context.</h2>
-          <div class="signal-grid" aria-label="Profile highlights">
-            <span>Production AWS SaaS</span>
-            <span>Terraform modules</span>
-            <span>Secure GenAI research</span>
-            <span>Technical reporting</span>
-          </div>
-        </div>
-      </aside>
+      <figure class="hero-visual" aria-label="Secure cloud and AI systems visual">
+        <img
+          src="assets/images/secure-cloud-ai-systems.png"
+          alt="A dark technical systems map connecting AWS, Terraform, CI/CD, SRE, GovernAI, RBAC, and NIST AI RMF."
+          width="1600"
+          height="1050"
+        />
+        <figcaption>
+          <span>Systems view</span>
+          Secure cloud operations, platform automation, and governed AI adoption.
+        </figcaption>
+      </figure>
     </section>
 
-    <section class="role-strip" aria-label="Role fit filters">
-      <div class="role-strip-inner">
-        <span class="role-label">View focus</span>
+    <section id="proof" class="proof-band" aria-label="Portfolio proof points">
+      <div class="proof-inner">
+        <article>
+          <strong>6+ years</strong>
+          <span>DevOps, cloud infrastructure, and platform work</span>
+        </article>
+        <article>
+          <strong>40%</strong>
+          <span>Approximate reduction in environment provisioning time through Terraform modules</span>
+        </article>
+        <article>
+          <strong>30%</strong>
+          <span>Approximate AWS spend reduction through optimization and planning</span>
+        </article>
+        <article>
+          <strong>70</strong>
+          <span>Respondents in GovernAI workplace AI survey</span>
+        </article>
+        <article>
+          <strong>3.99</strong>
+          <span>UW Master of Cybersecurity & Leadership GPA</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="roles" class="section role-section">
+      <div class="section-heading wide">
+        <p class="eyebrow">Role Fit</p>
+        <h2>Choose the lens that matches the hiring need.</h2>
+        <p>
+          The portfolio is structured for recruiters and technical hiring teams: quick proof first,
+          then deeper evidence for cloud, SRE, platform engineering, AI security, and communication-heavy roles.
+        </p>
+      </div>
+
+      <div class="role-console">
         <div class="role-tabs" role="tablist" aria-label="Portfolio focus">
           <button class="role-tab active" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
           <button class="role-tab" type="button" data-filter="cloud" role="tab" aria-selected="false">Cloud</button>
-          <button class="role-tab" type="button" data-filter="ai" role="tab" aria-selected="false">AI Security</button>
           <button class="role-tab" type="button" data-filter="sre" role="tab" aria-selected="false">SRE</button>
+          <button class="role-tab" type="button" data-filter="ai" role="tab" aria-selected="false">AI Security</button>
+          <button class="role-tab" type="button" data-filter="platform" role="tab" aria-selected="false">Platform</button>
           <button class="role-tab" type="button" data-filter="communication" role="tab" aria-selected="false">Communication</button>
         </div>
+        <article class="role-brief" aria-live="polite">
+          <span id="role-kicker">All roles</span>
+          <h3 id="role-title">Hybrid cloud, DevOps, SRE, and secure AI profile</h3>
+          <p id="role-copy">
+            Production AWS operations, Terraform automation, CI/CD, observability, cost optimization,
+            disaster recovery, and secure GenAI research in one portfolio.
+          </p>
+          <a id="role-resume" class="text-link" href="assets/resumes/Syed_Huzaifa_Afzal_Master_AI_DevOps_Resume.pdf" download>
+            Download matching resume
+          </a>
+        </article>
       </div>
     </section>
 
     <section id="about" class="section two-column">
       <div class="section-heading">
         <p class="eyebrow">About</p>
-        <h2>Infrastructure engineer with a security and AI governance lens.</h2>
+        <h2>Infrastructure depth with an AI governance lens.</h2>
       </div>
-      <div class="section-copy">
+      <div class="section-copy feature-copy">
         <p>
-          I am a cloud infrastructure and DevOps engineer with hands-on experience supporting
-          production AWS environments and building automation that makes systems easier to operate.
-          My work has included Terraform modules, CI/CD workflows, IAM and access control, monitoring,
-          disaster recovery readiness, OpenSearch and Redis upgrades, and cloud cost optimization.
+          My core experience is production cloud work: AWS infrastructure, Terraform modules, CI/CD workflows,
+          IAM/RBAC and SSO, monitoring, incident follow-up, disaster recovery readiness, OpenSearch and Redis
+          reliability work, and cloud cost optimization.
         </p>
         <p>
-          Alongside my infrastructure background, my current graduate work focuses on cybersecurity,
-          secure GenAI deployment, AI governance, and Shadow AI risk. Through my GovernAI project, I
-          built and evaluated a private GenAI environment using Ollama, Open WebUI, Docker, and Windows
-          Server, with attention to data residency, access control, network behavior, and governance
-          controls.
+          My current graduate work at UW adds the security and governance layer: secure enterprise GenAI,
+          Shadow AI risk, data residency, model control, role separation, access control, and mapping technical
+          controls to NIST AI RMF and ISO/IEC 27001:2022 concepts.
         </p>
         <p>
-          I also write about technology and AI for the University of Washington as a student news
-          reporter, which has helped me explain technical topics clearly to technical and
-          non-technical audiences.
+          I also report on UW technology and AI initiatives, which strengthens the communication side of my
+          engineering work: interviewing, explaining tradeoffs, writing clearly, and making technical systems
+          understandable to broader audiences.
         </p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-topline">
-        <div>
-          <p class="eyebrow">Focus Areas</p>
-          <h2>What I work on</h2>
-        </div>
-        <p>
-          Each area connects production operations with the judgment needed for secure AI and cloud
-          systems.
-        </p>
+    <section id="case-studies" class="section">
+      <div class="section-heading wide">
+        <p class="eyebrow">Case Studies</p>
+        <h2>Detailed work samples without inflated claims.</h2>
+        <p>These are built from the package resume material and focus on problem, build, and evidence.</p>
       </div>
-      <div class="card-grid focus-grid">
-        <article class="card lift" data-tags="cloud sre">
-          <span class="card-index">01</span>
-          <h3>Cloud Infrastructure & DevOps</h3>
-          <p>Production AWS infrastructure, Terraform, CI/CD, monitoring, automation, cost optimization, and operational reliability.</p>
+
+      <div class="case-grid">
+        <article class="case-card featured" data-tags="ai platform communication">
+          <div class="case-top">
+            <span class="case-type">AI Security / Research</span>
+            <h3>GovernAI - Secure Enterprise GenAI Platform</h3>
+            <p>
+              Designed and evaluated a private GenAI platform for sanctioned enterprise AI use,
+              local deployment, data residency, role separation, and governance mapping.
+            </p>
+          </div>
+          <div class="case-columns">
+            <div>
+              <h4>Built</h4>
+              <ul>
+                <li>Open WebUI, Ollama, Docker, and Windows Server based platform.</li>
+                <li>Three-role RBAC model for Standard User, AI Platform Admin, and System Administrator workflows.</li>
+                <li>Hardening guidance for model allow-listing, storage persistence, admin visibility, and network behavior monitoring.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Validated</h4>
+              <ul>
+                <li>Host firewall rules and Wireshark traffic analysis for expected local platform behavior.</li>
+                <li>Governance mapping to NIST AI RMF and ISO/IEC 27001:2022 Annex A concepts.</li>
+                <li>Benchmarks against ChatGPT, Microsoft 365 Copilot, and Gemini Pro across drafting, summarization, and code-generation workflows.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="evidence-row">
+            <span>IEEE SVCC 2026 accepted paper</span>
+            <span>70-respondent workplace AI survey</span>
+            <span>71% reported unsanctioned public AI use at work</span>
+            <span>97% would use a governed organization-provided option</span>
+          </div>
         </article>
-        <article class="card lift" data-tags="ai">
-          <span class="card-index">02</span>
-          <h3>Secure GenAI & AI Governance</h3>
-          <p>Private AI platforms, Shadow AI risk, role-based access, data privacy, network validation, and governance mapping.</p>
+
+        <article class="case-card" data-tags="cloud sre platform">
+          <span class="case-type">Cloud / DevOps / FinOps</span>
+          <h3>AWS Infrastructure Automation and Cost Optimization</h3>
+          <p>
+            Built reusable Terraform and AWS automation patterns for production SaaS infrastructure
+            with emphasis on consistency, reliability, and cost visibility.
+          </p>
+          <ul>
+            <li>Reusable modules across API Gateway, CloudFront, Route 53, OpenSearch, and Redshift.</li>
+            <li>AWS Trusted Advisor, Cost Optimization Hub, Reserved Instance planning, and rightsizing.</li>
+            <li>S3 Inventory, Redshift, and Superset analytics for storage usage and cost-attribution visibility.</li>
+          </ul>
+          <div class="mini-proof">
+            <span>About 40% faster provisioning</span>
+            <span>About 30% cloud spend reduction</span>
+          </div>
         </article>
-        <article class="card lift" data-tags="sre cloud">
-          <span class="card-index">03</span>
-          <h3>Site Reliability & Operations</h3>
-          <p>Incident response, runbooks, deployment support, observability, disaster recovery readiness, and production troubleshooting.</p>
+
+        <article class="case-card" data-tags="cloud sre platform">
+          <span class="case-type">Data Infrastructure / Automation</span>
+          <h3>Spark-as-a-Service AWS EMR Automation</h3>
+          <p>
+            Supported Spark/HDP migration work from EC2-based infrastructure toward AWS EMR, making
+            big-data workloads easier to deploy, manage, and scale.
+          </p>
+          <ul>
+            <li>Terraform and Jenkins automation for AWS EMR deployment and destruction.</li>
+            <li>End-user-driven provisioning with S3 metadata, tags, state retrieval, and validation.</li>
+            <li>Autoscaling and manageability improvements through EMR-based architecture.</li>
+          </ul>
         </article>
-        <article class="card lift" data-tags="communication ai">
-          <span class="card-index">04</span>
-          <h3>Technical Communication</h3>
-          <p>Clear documentation, stakeholder communication, executive interviews, technical storytelling, and public-facing AI writing.</p>
+
+        <article class="case-card" data-tags="cloud platform">
+          <span class="case-type">Application Modernization</span>
+          <h3>Containerized Architecture PoC</h3>
+          <p>
+            Migrated application infrastructure from EC2-based deployment toward Docker and ECS-based
+            containerized architecture.
+          </p>
+          <ul>
+            <li>ECR, ECS, Fargate, ALB, Route 53, CloudWatch, and Terraform.</li>
+            <li>Microservices-style deployment patterns, autoscaling, service discovery, and IaC standardization.</li>
+          </ul>
+        </article>
+
+        <article class="case-card" data-tags="communication ai">
+          <span class="case-type">Technical Communication</span>
+          <h3>UW AI and Public Storytelling</h3>
+          <p>
+            Reports on campus news, student life, IT, and AI developments for the University of Washington community.
+          </p>
+          <ul>
+            <li>Published Tacoma Ledger article on UW Purple and student collaboration with UW-IT.</li>
+            <li>Participates in UW Purple Monthly Training and the UW AI Community of Practice.</li>
+            <li>Builds executive communication, interviewing, and audience-aware technical writing skills.</li>
+          </ul>
         </article>
       </div>
     </section>
 
     <section id="experience" class="section">
-      <div class="section-topline">
-        <div>
-          <p class="eyebrow">Experience</p>
-          <h2>Professional background</h2>
-        </div>
-        <p>Expandable details keep the page fast to scan while preserving the evidence recruiters need.</p>
+      <div class="section-heading wide">
+        <p class="eyebrow">Experience</p>
+        <h2>Production infrastructure, client delivery, and public communication.</h2>
       </div>
 
       <div class="timeline">
-        <article class="timeline-item" data-tags="cloud sre">
+        <article class="timeline-item" data-tags="cloud sre platform">
           <button class="timeline-summary" type="button" aria-expanded="true">
             <span class="timeline-date">Mar 2022 - May 2025</span>
             <span>
               <strong>DevOps Engineer</strong>
-              <span>Harri / Kalam 4 Solutions</span>
+              <span>Harri - contracted by Kalam 4 Solutions</span>
             </span>
           </button>
           <div class="timeline-details">
             <ul>
-              <li>Built reusable Terraform modules for AWS API Gateway, CloudFront, Route 53, OpenSearch, and Redshift to improve consistency and reduce provisioning time.</li>
-              <li>Supported production AWS SaaS infrastructure with IAM/RBAC, SSO, Systems Manager, CI/CD workflows, monitoring, and operational runbooks.</li>
-              <li>Worked on OpenSearch cross-cluster replication, Redis upgrades, disaster recovery readiness, and multi-region reliability improvements.</li>
-              <li>Used AWS Trusted Advisor, Cost Optimization Hub, reservation planning, and rightsizing to reduce cloud spend by approximately 30%.</li>
-              <li>Built S3 Inventory analytics workflows using Redshift and Superset to improve storage visibility and reporting.</li>
+              <li>Designed, built, and maintained production AWS infrastructure for enterprise SaaS environments.</li>
+              <li>Shipped reusable Terraform modules for API Gateway, CloudFront, Route 53, OpenSearch, and Redshift.</li>
+              <li>Implemented IAM/RBAC and SSO patterns, refined least-privilege boundaries, and centralized operational access through AWS Systems Manager.</li>
+              <li>Strengthened disaster recovery and multi-region readiness through Redis upgrades, OpenSearch cross-cluster replication, DR runbooks, and recovery planning.</li>
+              <li>Built S3 Inventory analytics with Redshift and Superset for storage growth, usage, and cost-attribution visibility.</li>
+              <li>Mentored peers and trained interns and engineers on DevOps tooling and Harri infrastructure patterns.</li>
+              <li>Recognition: Top Performer in 2023 and 2024.</li>
             </ul>
           </div>
         </article>
 
-        <article class="timeline-item" data-tags="cloud sre">
+        <article class="timeline-item" data-tags="cloud sre platform">
           <button class="timeline-summary" type="button" aria-expanded="false">
             <span class="timeline-date">Jul 2019 - Mar 2022</span>
             <span>
               <strong>Cloud Infrastructure / Software Engineer</strong>
-              <span>Visionet Systems / Systems Limited</span>
+              <span>Visionet Systems - contracted by Systems Limited</span>
             </span>
           </button>
           <div class="timeline-details" hidden>
             <ul>
-              <li>Automated AWS patching, scheduling, post-deployment validation, and maintenance workflows using Systems Manager, Lambda, Python, Bash, and PowerShell.</li>
-              <li>Built and maintained Jenkins CI/CD pipelines and supported CloudWatch and Datadog observability for cloud workloads.</li>
-              <li>Provisioned infrastructure for AWS EMR and ECS workloads using Terraform, Docker, ECS, ALB, Route 53, and Fargate.</li>
-              <li>Supported migration of Spark/HDP workloads from EC2 to EMR to improve scalability and operational manageability.</li>
+              <li>Automated AWS operations using Systems Manager, Lambda, Python, Bash, PowerShell, and AWS CLI.</li>
+              <li>Built and maintained Jenkins CI/CD pipelines using shell scripting, Groovy, Python, and AWS CLI.</li>
+              <li>Created EMR deployment and destruction pipelines with Terraform state retrieval, validation, tagging, and cleanup.</li>
+              <li>Supported Spark-as-a-Service migration work from EC2/Hortonworks Data Platform to AWS EMR.</li>
+              <li>Integrated CloudWatch and Datadog monitoring for cloud-hosted applications.</li>
+              <li>Worked directly with international client teams in Agile/DevOps environments.</li>
+              <li>Recognition: Best Team Award, Cloud Services, Systems Limited, 2020.</li>
             </ul>
           </div>
         </article>
@@ -196,96 +308,97 @@
           <button class="timeline-summary" type="button" aria-expanded="false">
             <span class="timeline-date">Sep 2025 - Present</span>
             <span>
-              <strong>Student News Reporter</strong>
+              <strong>Part-Time Student News Reporter</strong>
               <span>University of Washington</span>
             </span>
           </button>
           <div class="timeline-details" hidden>
             <ul>
-              <li>Report on campus news, student life, and IT/AI developments for the Tacoma Ledger.</li>
-              <li>Interview university leaders and translate technical AI and IT topics into clear public-facing stories.</li>
-              <li>Covered UW Purple and AI community efforts across the University of Washington.</li>
+              <li>Covers campus news, student life, IT, AI, and university initiatives.</li>
+              <li>Interviews university stakeholders and executives, including podcast-style conversations.</li>
+              <li>Writes public-facing stories that translate institutional and technology topics for broader audiences.</li>
             </ul>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <div class="section-topline">
-        <div>
-          <p class="eyebrow">Projects & Research</p>
-          <h2>Selected work</h2>
-        </div>
-        <p>Built around the work already in the resume data: no inflated claims, just the strongest story.</p>
+    <section class="section principles-section">
+      <div class="section-heading wide">
+        <p class="eyebrow">Operating Style</p>
+        <h2>How I approach engineering work.</h2>
       </div>
-
-      <div class="project-grid">
-        <article class="project-card" data-tags="ai">
-          <div>
-            <span class="project-type">AI Security / Research</span>
-            <h3>GovernAI - Secure Enterprise GenAI Platform</h3>
-            <p>Built and evaluated an on-prem GenAI platform for private AI experimentation.</p>
-          </div>
-          <ul>
-            <li>Used Ollama, Open WebUI, Docker, and Windows Server.</li>
-            <li>Designed role-based access for Standard User, AI Platform Admin, and System Administrator workflows.</li>
-            <li>Validated network behavior using host firewall rules and Wireshark.</li>
-            <li>Mapped governance controls to NIST AI RMF and ISO/IEC 27001:2022 concepts.</li>
-          </ul>
+      <div class="principle-grid">
+        <article data-tags="cloud platform sre">
+          <span>01</span>
+          <h3>Automate the repeatable path</h3>
+          <p>Terraform modules, Jenkins workflows, AWS Systems Manager documents, runbooks, and validation scripts reduce handoffs and make operations repeatable.</p>
         </article>
-
-        <article class="project-card" data-tags="cloud sre">
-          <div>
-            <span class="project-type">Cloud / DevOps</span>
-            <h3>AWS Infrastructure Automation and Cost Optimization</h3>
-            <p>Created reusable Terraform and automation workflows across AWS environments.</p>
-          </div>
-          <ul>
-            <li>Improved cost visibility, monitoring, and operational consistency.</li>
-            <li>Connected cloud operations work to reliability and reporting needs.</li>
-          </ul>
+        <article data-tags="sre cloud">
+          <span>02</span>
+          <h3>Make reliability visible</h3>
+          <p>Monitoring, alerting, dashboards, OpenSearch, CloudWatch, Datadog, DR runbooks, and cost analytics help teams see risk before it becomes incident pressure.</p>
         </article>
-
-        <article class="project-card" data-tags="communication ai">
-          <div>
-            <span class="project-type">Communication / AI</span>
-            <h3>UW AI and Technical Storytelling</h3>
-            <p>Public-facing writing and interviews on AI, IT, and cybersecurity topics.</p>
-          </div>
-          <ul>
-            <li>Published writing on UW Purple and campus AI adoption.</li>
-            <li>Use executive interviews and reporting to explain technical work to broader audiences.</li>
-          </ul>
+        <article data-tags="ai platform">
+          <span>03</span>
+          <h3>Govern AI where work happens</h3>
+          <p>GovernAI focuses on the practical controls enterprise teams need: access separation, data locality, model control, admin visibility, and network validation.</p>
+        </article>
+        <article data-tags="communication">
+          <span>04</span>
+          <h3>Explain the tradeoff</h3>
+          <p>Writing, stakeholder interviews, and reporting help me turn infrastructure, AI, and security topics into decisions that people can understand.</p>
         </article>
       </div>
     </section>
 
-    <section id="skills" class="section">
-      <div class="section-topline">
+    <section id="stack" class="section">
+      <div class="section-heading wide stack-heading">
         <div>
-          <p class="eyebrow">Skills</p>
-          <h2>Technical stack</h2>
+          <p class="eyebrow">Stack</p>
+          <h2>Searchable skills matrix.</h2>
         </div>
-        <p>Grouped for applicant tracking systems and for humans who want the short version.</p>
+        <label class="skill-search">
+          <span>Filter skills</span>
+          <input type="search" id="skill-search" placeholder="Try Terraform, RBAC, Datadog..." autocomplete="off" />
+        </label>
       </div>
+
       <div class="skill-groups">
-        <article class="skill-group" data-tags="cloud sre">
-          <h3>Cloud & DevOps</h3>
+        <article class="skill-group" data-tags="cloud sre platform">
+          <h3>Cloud Platforms & AWS</h3>
           <div class="chips">
-            <span>AWS</span><span>Terraform</span><span>Jenkins</span><span>Docker</span><span>Kubernetes exposure</span><span>ECS</span><span>EMR</span><span>OpenSearch</span><span>Redis</span><span>CloudWatch</span><span>Datadog</span><span>Systems Manager</span><span>Route 53</span><span>IAM</span><span>CI/CD</span><span>Linux</span><span>Python</span><span>Bash</span><span>PowerShell</span>
+            <span>AWS</span><span>Azure working knowledge</span><span>GCP working knowledge</span><span>Oracle Cloud Infrastructure</span><span>EC2</span><span>S3</span><span>RDS</span><span>Lambda</span><span>API Gateway</span><span>CloudFront</span><span>Route 53</span><span>ECS</span><span>ECR</span><span>Fargate</span><span>ALB</span><span>VPC</span><span>IAM</span><span>Systems Manager</span><span>CloudWatch</span><span>EMR</span><span>OpenSearch</span><span>ElastiCache</span><span>Redshift</span>
           </div>
         </article>
-        <article class="skill-group" data-tags="ai">
-          <h3>AI & Security</h3>
+        <article class="skill-group" data-tags="cloud platform">
+          <h3>Infrastructure & Delivery</h3>
           <div class="chips">
-            <span>Secure GenAI deployment</span><span>Ollama</span><span>Open WebUI</span><span>AI governance</span><span>Shadow AI risk</span><span>NIST AI RMF</span><span>ISO/IEC 27001 concepts</span><span>Prompt evaluation</span><span>Private AI platforms</span><span>Data privacy</span><span>Access control</span>
+            <span>Terraform</span><span>CloudFormation</span><span>Modular IaC</span><span>Terraform state</span><span>Jenkins</span><span>GitHub Actions</span><span>GitLab CI/CD</span><span>Git</span><span>Bitbucket</span><span>Docker</span><span>Docker Compose</span><span>Kubernetes exposure</span><span>EKS exposure</span><span>Service discovery</span><span>Rollback planning</span><span>Post-deployment validation</span>
           </div>
         </article>
-        <article class="skill-group" data-tags="communication">
-          <h3>Communication</h3>
+        <article class="skill-group" data-tags="sre cloud">
+          <h3>Reliability & Operations</h3>
           <div class="chips">
-            <span>Technical writing</span><span>Executive interviews</span><span>Stakeholder communication</span><span>Runbooks</span><span>Documentation</span><span>Public-facing AI writing</span>
+            <span>Datadog</span><span>Prometheus/Grafana exposure</span><span>Monitoring</span><span>Alerting</span><span>Dashboards</span><span>Incident triage</span><span>Runbooks</span><span>Disaster recovery</span><span>Multi-region readiness</span><span>Trusted Advisor</span><span>Cost Optimization Hub</span><span>Reserved Instances</span><span>FinOps practices</span>
+          </div>
+        </article>
+        <article class="skill-group" data-tags="ai platform">
+          <h3>AI & LLM Infrastructure</h3>
+          <div class="chips">
+            <span>Secure LLM deployment</span><span>Ollama</span><span>Open WebUI</span><span>Local inference</span><span>Model allow-listing</span><span>Model versioning concepts</span><span>AI governance</span><span>Shadow AI risk</span><span>Prompt evaluation</span><span>Private AI platforms</span><span>Data residency</span>
+          </div>
+        </article>
+        <article class="skill-group" data-tags="ai sre platform">
+          <h3>Security & Governance</h3>
+          <div class="chips">
+            <span>IAM</span><span>RBAC</span><span>SSO</span><span>Least privilege</span><span>Access control design</span><span>Secrets management concepts</span><span>Encryption concepts</span><span>Vulnerability management concepts</span><span>NIST AI RMF</span><span>ISO/IEC 27001 concepts</span><span>SOC 2/HIPAA concepts</span><span>Auditability</span>
+          </div>
+        </article>
+        <article class="skill-group" data-tags="communication cloud platform">
+          <h3>Programming, Data & Collaboration</h3>
+          <div class="chips">
+            <span>Python</span><span>Bash</span><span>PowerShell</span><span>JavaScript</span><span>Groovy</span><span>SQL exposure</span><span>Redshift</span><span>Superset</span><span>Jira</span><span>Confluence</span><span>ServiceNow</span><span>Agile/Scrum</span><span>Technical documentation</span><span>Executive communication</span><span>Stakeholder interviews</span>
           </div>
         </article>
       </div>
@@ -293,81 +406,117 @@
 
     <section class="section two-column education-section">
       <div class="section-heading">
-        <p class="eyebrow">Education & Certifications</p>
-        <h2>Academic background and credentials</h2>
+        <p class="eyebrow">Education & Recognition</p>
+        <h2>Academic, certification, and honors signal.</h2>
       </div>
       <div class="credential-list">
         <article>
           <h3>University of Washington</h3>
           <p>Master of Cybersecurity & Leadership &mdash; Expected June 2026</p>
-          <p class="muted">GPA: 3.99 Â· Beta Gamma Sigma Â· Upsilon Pi Epsilon</p>
+          <p class="muted">GPA: 3.99 / Beta Gamma Sigma / Upsilon Pi Epsilon</p>
         </article>
         <article>
           <h3>Ghulam Ishaq Khan Institute of Engineering Sciences and Technology</h3>
-          <p>B.S. Computer Science, 2015-2019</p>
+          <p>Bachelor of Science in Computer Science, 2015-2019</p>
+          <p class="muted">Minor: Mathematics</p>
         </article>
         <article>
-          <h3>Certifications</h3>
-          <p>AWS Certified Solutions Architect - Associate</p>
-          <p>Oracle Cloud Infrastructure Architect - Professional</p>
-          <p>Oracle Cloud Infrastructure Developer - Associate</p>
+          <h3>Certifications and Training</h3>
+          <p>AWS Certified Solutions Architect - Associate, issued October 2023, expires October 2026</p>
+          <p>Oracle Cloud Infrastructure Architect Professional</p>
+          <p>Oracle Cloud Infrastructure Developer Associate</p>
           <p>Foundations for Cybersecurity Analytics - University of Washington</p>
+          <p>DevOps Foundations - LinkedIn Learning</p>
+        </article>
+        <article>
+          <h3>Honors</h3>
+          <p>Top Performer - Harri, 2023 and 2024</p>
+          <p>Best Team Award - Cloud Services, Systems Limited, 2020</p>
+          <p>1st position in Final Year Project at GIK Institute</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading wide">
+        <p class="eyebrow">Earlier Work</p>
+        <h2>Foundations before the current AI + cloud profile.</h2>
+      </div>
+      <div class="compact-grid">
+        <article data-tags="ai platform">
+          <h3>Blockchain / Cryptocurrency Intern</h3>
+          <p>Microsoft Redmond Campus remote internship, Summer 2018. Completed a three-month internship focused on blockchain concepts and deployment of a private Stellar network.</p>
+        </article>
+        <article data-tags="communication platform">
+          <h3>Lead Web Developer / Consultant</h3>
+          <p>Festoon Engineering Works, Summer 2017. Gathered requirements, designed UX/UI, and deployed the company website using JavaScript, HTML, CSS, and cPanel.</p>
+        </article>
+        <article data-tags="platform">
+          <h3>LifeTrack Android Application</h3>
+          <p>GIK Institute final year project, 2019. Built an Android app using Android Studio and Java; achieved 1st position in final year project evaluation.</p>
         </article>
       </div>
     </section>
 
     <section id="writing" class="section">
-      <div class="section-topline">
-        <div>
-          <p class="eyebrow">Publications & Writing</p>
-          <h2>Research and public writing</h2>
-        </div>
+      <div class="section-heading wide">
+        <p class="eyebrow">Writing & Public Communication</p>
+        <h2>Research, reporting, and interviews.</h2>
       </div>
       <div class="writing-grid">
         <article class="card" data-tags="ai">
-          <span class="project-type">Accepted paper</span>
+          <span class="case-type">Accepted paper</span>
           <h3>IEEE SVCC 2026</h3>
           <p>"Are You Aware of Shadow AI? GovernAI for Addressing Emerging Risks."</p>
         </article>
         <article class="card" data-tags="communication ai">
-          <span class="project-type">Tacoma Ledger</span>
+          <span class="case-type">Tacoma Ledger</span>
           <h3>UW Purple and AI adoption</h3>
           <p>Public-facing article on UW Purple and AI adoption at the University of Washington.</p>
           <a class="text-link" href="https://thetacomaledger.com/2025/10/13/building-the-future-with-ai-purple-uw-students-join-forces-with-uw-it-to-shape-next-gen-ai/">Read article</a>
+        </article>
+        <article class="card" data-tags="communication">
+          <span class="case-type">Interviewing</span>
+          <h3>Podcast / executive conversation experience</h3>
+          <p>Experience with podcast-style conversations and executive interviews.</p>
+          <a class="text-link" href="https://www.youtube.com/watch?v=oWbC9R_lV2s">Watch conversation</a>
         </article>
       </div>
     </section>
 
     <section class="section resume-section" aria-labelledby="resume-heading">
-      <div>
+      <div class="section-heading">
         <p class="eyebrow">Resume Downloads</p>
-        <h2 id="resume-heading">Choose the version that matches the role</h2>
+        <h2 id="resume-heading">Route the right resume to the right role.</h2>
       </div>
       <div class="resume-grid">
         <a class="resume-card" href="assets/resumes/Syed_Huzaifa_Afzal_AI_Engineer_CV.pdf" download>
           <span>AI Engineer CV</span>
-          <strong>Secure AI, GenAI governance, and research-oriented roles</strong>
+          <strong>Secure AI, GenAI governance, AI infrastructure, and research-oriented roles.</strong>
         </a>
         <a class="resume-card" href="assets/resumes/Syed_Huzaifa_Afzal_DevOps_Engineer_CV.pdf" download>
           <span>DevOps Engineer CV</span>
-          <strong>Cloud infrastructure, SRE, platform, and operations roles</strong>
+          <strong>Cloud infrastructure, DevOps, SRE, platform, and operations roles.</strong>
         </a>
         <a class="resume-card" href="assets/resumes/Syed_Huzaifa_Afzal_Master_AI_DevOps_Resume.pdf" download>
           <span>Master AI + DevOps Resume</span>
-          <strong>Combined profile for teams that need both systems and AI judgment</strong>
+          <strong>Detailed master source for teams that need both systems and AI governance judgment.</strong>
         </a>
       </div>
     </section>
 
     <section id="contact" class="section contact-section">
       <div class="contact-card">
-        <p class="eyebrow">Contact</p>
-        <h2>Open to AI, cloud infrastructure, DevOps, SRE, and platform engineering roles.</h2>
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Open to AI, cloud infrastructure, DevOps, SRE, and platform engineering roles.</h2>
+        </div>
         <div class="contact-grid">
-          <a href="mailto:huzaifaafzal10@gmail.com">huzaifaafzal10@gmail.com</a>
+          <a id="email-link" href="mailto:huzaifaafzal10@gmail.com">huzaifaafzal10@gmail.com</a>
           <a href="tel:+12067505956">+1 (206) 750-5956</a>
           <a href="https://www.linkedin.com/in/syed-huzaifa-bin-afzal">LinkedIn</a>
           <span>GitHub: [ADD_GITHUB_PROFILE_URL]</span>
+          <button class="copy-button" type="button" data-copy="huzaifaafzal10@gmail.com">Copy email</button>
         </div>
       </div>
     </section>
