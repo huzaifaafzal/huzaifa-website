@@ -10,6 +10,12 @@
       <h1>Secure cloud systems with the judgment to explain them.</h1>
       <p class="hero-subhead">{{ profile.subheadline }}</p>
       <p class="lead">{{ profile.short_bio }}</p>
+      <div class="live-role-switcher" aria-label="Profile command views">
+        <button type="button" class="is-active" data-command-button data-command-title="Cloud command center" data-command-copy="AWS operations, Terraform workflows, CI/CD paths, cost visibility, disaster recovery, and production reliability stay at the center of the portfolio.">Cloud</button>
+        <button type="button" data-command-button data-command-title="Secure AI systems" data-command-copy="AI work is framed around governed adoption, local deployment patterns, role-based access, data residency, and practical engineering constraints.">AI</button>
+        <button type="button" data-command-button data-command-title="Cyber risk lens" data-command-copy="Cybersecurity and leadership training shape how infrastructure decisions are evaluated for access control, resilience, operational maturity, and communication.">Security</button>
+        <button type="button" data-command-button data-command-title="Research signal" data-command-copy="Technical writing, UW AI coverage, interviews, and research communication turn complex systems into clear public-facing narratives.">Writing</button>
+      </div>
       <div class="hero-actions">
         <a class="button primary" href="{% url 'projects' %}">Explore Systems</a>
         <a class="button" href="{% url 'resume' %}">Download Resume</a>
@@ -22,7 +28,7 @@
       </div>
     </div>
 
-    <aside class="mission-console magnetic-card reveal" aria-label="Portfolio mission console">
+    <aside class="mission-console magnetic-card reveal" aria-label="Portfolio mission console" data-depth="0.035">
       <img src="{% static 'images/secure-cloud-abstract.png' %}" alt="" width="1600" height="1050" loading="eager">
       <div class="console-topline">
         <span>Operator profile</span>
@@ -40,7 +46,13 @@
       </div>
       <div class="console-readout">
         <span>Current brief</span>
-        <p>{{ profile.long_bio }}</p>
+        <h2 id="command-title">Cloud command center</h2>
+        <p id="command-copy">{{ profile.long_bio }}</p>
+      </div>
+      <div class="console-status-grid" aria-label="Operating signals">
+        <span><strong>6+</strong> years field experience</span>
+        <span><strong>3</strong> targeted master CVs</span>
+        <span><strong>24/7</strong> reliability mindset</span>
       </div>
       <div class="hero-badges" aria-label="Profile badges">
         {% for badge in profile.hero_badges %}<span>{{ badge }}</span>{% endfor %}
@@ -139,13 +151,14 @@
   <div class="section-heading">
     <p class="eyebrow">Capability Matrix</p>
     <h2>Interactive skill deck for cloud, security, data, and communication.</h2>
-    <p>Each capability is mapped to production engineering, security leadership, and clear technical communication.</p>
+    <p>Each capability is mapped to production engineering, security leadership, and clear technical communication. Press a highlighted key or use the number row.</p>
   </div>
-  <div class="skill-lab">
+  <div class="skill-lab" data-skill-console>
     <div class="skill-stage" aria-label="Interactive skill controls">
       {% for category in skill_categories %}
         {% for skill in category.skills.all|slice:":4" %}
           <button class="skill-key" type="button" data-skill-title="{{ skill.name }}" data-skill-copy="{{ category.description|default:'Core portfolio capability.' }}">
+            <kbd aria-hidden="true"></kbd>
             <span>{{ skill.name }}</span>
           </button>
         {% endfor %}
@@ -156,6 +169,10 @@
       <h3 id="deck-skill-title">Cloud systems</h3>
       <p id="deck-skill-copy">Select a key to inspect how the stack supports production engineering, cybersecurity leadership, and clear technical communication.</p>
       <div class="terminal-bars" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="skill-signal" aria-hidden="true">
+        <span>input</span>
+        <strong id="deck-skill-hotkey">01</strong>
+      </div>
     </aside>
   </div>
 </section>
