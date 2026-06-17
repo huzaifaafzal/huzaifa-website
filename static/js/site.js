@@ -1,5 +1,35 @@
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.getElementById("site-nav");
+const root = document.documentElement;
+const themeToggle = document.querySelector("[data-theme-toggle]");
+const scrollProgress = document.querySelector("[data-scroll-progress]");
+const cursorSpotlight = document.querySelector("[data-cursor-spotlight]");
+const commandButtons = document.querySelectorAll("[data-command-button]");
+const commandTitle = document.getElementById("command-title");
+const commandCopy = document.getElementById("command-copy");
+const deckHotkey = document.getElementById("deck-skill-hotkey");
+
+const getActiveTheme = () => root.dataset.theme || "dark";
+const setTheme = (theme) => {
+  root.dataset.theme = theme;
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", String(theme === "light"));
+  }
+
+  try {
+    localStorage.setItem("portfolio-theme", theme);
+  } catch (error) {
+    // Theme still works for the current session if storage is unavailable.
+  }
+};
+
+setTheme(getActiveTheme());
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    setTheme(getActiveTheme() === "light" ? "dark" : "light");
+  });
+}
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
@@ -29,6 +59,26 @@ if (header && "IntersectionObserver" in window) {
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const updateScrollProgress = () => {
+  if (!scrollProgress) return;
+
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  scrollProgress.style.setProperty("--scroll-progress", String(Math.min(Math.max(progress, 0), 1)));
+};
+
+window.addEventListener("scroll", updateScrollProgress, { passive: true });
+window.addEventListener("resize", updateScrollProgress);
+updateScrollProgress();
+
+if (cursorSpotlight && !prefersReducedMotion) {
+  window.addEventListener("pointermove", (event) => {
+    document.body.classList.add("has-pointer");
+    root.style.setProperty("--cursor-x", `${event.clientX}px`);
+    root.style.setProperty("--cursor-y", `${event.clientY}px`);
+  });
+}
+
 const revealTargets = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
@@ -53,13 +103,23 @@ const deckKeys = document.querySelectorAll(".skill-key");
 const deckTitle = document.getElementById("deck-skill-title");
 const deckCopy = document.getElementById("deck-skill-copy");
 
-deckKeys.forEach((button) => {
-  const activate = () => {
-    deckKeys.forEach((key) => key.classList.remove("is-active"));
-    button.classList.add("is-active");
+const activateSkill = (button, index) => {
+  deckKeys.forEach((key) => key.classList.remove("is-active"));
+  button.classList.add("is-active");
 
-    if (deckTitle) deckTitle.textContent = button.dataset.skillTitle || button.textContent.trim();
-    if (deckCopy) deckCopy.textContent = button.dataset.skillCopy || "";
+  if (deckTitle) deckTitle.textContent = button.dataset.skillTitle || button.textContent.trim();
+  if (deckCopy) deckCopy.textContent = button.dataset.skillCopy || "";
+  if (deckHotkey) deckHotkey.textContent = String(index + 1).padStart(2, "0");
+};
+
+deckKeys.forEach((button, index) => {
+  const keycap = button.querySelector("kbd");
+  const hotkey = index < 9 ? String(index + 1) : "0";
+  button.dataset.hotkey = hotkey;
+  if (keycap) keycap.textContent = hotkey;
+
+  const activate = () => {
+    activateSkill(button, index);
   };
 
   ["mouseenter", "focus", "click"].forEach((eventName) => {
@@ -67,13 +127,47 @@ deckKeys.forEach((button) => {
   });
 });
 
-document.querySelectorAll(".magnetic-card").forEach((card) => {
-  if (prefersReducedMotion) return;
+if (deckKeys.length) {
+  activateSkill(deckKeys[0], 0);
 
+  window.addEventListener("keydown", (event) => {
+    const activeElement = document.activeElement;
+    const isTyping =
+      activeElement instanceof HTMLInputElement ||
+      activeElement instanceof HTMLTextAreaElement ||
+      activeElement?.getAttribute("contenteditable") === "true";
+
+    if (isTyping) return;
+
+    const target = Array.from(deckKeys).find((button) => button.dataset.hotkey === event.key);
+    if (!target) return;
+
+    event.preventDefault();
+    activateSkill(target, Array.from(deckKeys).indexOf(target));
+    target.focus({ preventScroll: true });
+  });
+}
+
+commandButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    commandButtons.forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+
+    if (commandTitle) commandTitle.textContent = button.dataset.commandTitle || button.textContent.trim();
+    if (commandCopy) commandCopy.textContent = button.dataset.commandCopy || "";
+  });
+});
+
+document.querySelectorAll(".magnetic-card").forEach((card) => {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width;
     const y = (event.clientY - rect.top) / rect.height;
+    card.style.setProperty("--mx", String(x * 100));
+    card.style.setProperty("--my", String(y * 100));
+
+    if (prefersReducedMotion) return;
+
     const rotateX = (0.5 - y) * 5;
     const rotateY = (x - 0.5) * 7;
 

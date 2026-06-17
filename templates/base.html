@@ -15,6 +15,17 @@
   <title>{% if page_title %}{{ page_title }} | {% endif %}{{ profile.full_name|default:"Syed Huzaifa Bin Afzal" }}</title>
   <link rel="icon" href="{% static 'favicon.svg' %}" type="image/svg+xml">
   <link rel="preload" as="image" href="{% static 'images/secure-cloud-abstract.png' %}">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem("portfolio-theme");
+        var theme = storedTheme || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.dataset.theme = theme;
+      } catch (error) {
+        document.documentElement.dataset.theme = "dark";
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
   <script type="application/ld+json">
   {
@@ -29,6 +40,8 @@
   </script>
 </head>
 <body>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"><span></span></div>
+  <div class="cursor-spotlight" data-cursor-spotlight aria-hidden="true"></div>
   <div class="ambient-grid" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
@@ -39,6 +52,12 @@
         <small>Cloud / Security / Systems</small>
       </span>
     </a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark theme">
+      <span class="theme-toggle-track" aria-hidden="true">
+        <span class="theme-sun"></span>
+        <span class="theme-moon"></span>
+      </span>
+    </button>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">Menu</button>
     <nav id="site-nav" aria-label="Primary navigation">
       <a href="{% url 'about' %}">Profile</a>
