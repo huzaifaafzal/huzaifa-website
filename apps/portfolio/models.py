@@ -43,7 +43,7 @@ class Experience(OrderedModel):
     class Category(models.TextChoices):
         CLOUD = "cloud", "Cloud / DevOps"
         JOURNALISM = "journalism", "Writing / Journalism"
-        LEGAL = "legal", "Legal / Litigation Support"
+        AI_RESEARCH = "ai_research", "AI Research / Academic"
         SECURITY = "security", "Cybersecurity"
 
     company = models.CharField(max_length=160)

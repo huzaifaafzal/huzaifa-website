@@ -26,7 +26,7 @@ class PortfolioContextMixin:
     page_title = ""
     meta_description = (
         "Premium portfolio for Syed Huzaifa Bin Afzal, AWS Cloud/DevOps engineer, "
-        "cybersecurity leadership graduate student, writer, and litigation-support professional."
+        "cybersecurity leadership graduate student, AI builder, researcher, and technical writer."
     )
 
     def get_context_data(self, **kwargs):
