@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="page-hero section">
-  <p class="eyebrow">Writing</p>
-  <h1>Journalism, AI reporting, and technical translation</h1>
+<section class="page-hero section reveal">
+  <p class="eyebrow">Editorial Desk</p>
+  <h1>Journalism, AI reporting, and technical translation.</h1>
   <p class="lead">Writing work that supports a technical profile: campus news, IT and AI developments, executive interviews, podcast conversations, and structured public explanation.</p>
 </section>
-<section class="section">
+<section class="section reveal">
   <div class="article-grid">
     {% for article in articles %}
-      <article>
+      <article class="magnetic-card">
         <span>{{ article.publication }}</span>
         <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
         <p>{{ article.summary }}</p>

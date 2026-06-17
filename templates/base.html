@@ -13,6 +13,7 @@
   <meta property="og:url" content="{{ site_url }}{{ request.path }}">
   <meta property="og:image" content="{{ site_url }}{% static 'images/secure-cloud-abstract.png' %}">
   <title>{% if page_title %}{{ page_title }} | {% endif %}{{ profile.full_name|default:"Syed Huzaifa Bin Afzal" }}</title>
+  <link rel="icon" href="{% static 'favicon.svg' %}" type="image/svg+xml">
   <link rel="preload" as="image" href="{% static 'images/secure-cloud-abstract.png' %}">
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
   <script type="application/ld+json">
@@ -28,20 +29,24 @@
   </script>
 </head>
 <body>
+  <div class="ambient-grid" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
     <a class="brand" href="{% url 'home' %}" aria-label="Syed Huzaifa Bin Afzal home">
       <span class="brand-mark" aria-hidden="true">HA</span>
-      <span>Huzaifa Afzal</span>
+      <span class="brand-copy">
+        <strong>Huzaifa Afzal</strong>
+        <small>Cloud / Security / Systems</small>
+      </span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">Menu</button>
     <nav id="site-nav" aria-label="Primary navigation">
-      <a href="{% url 'about' %}">About</a>
-      <a href="{% url 'experience' %}">Experience</a>
-      <a href="{% url 'projects' %}">Projects</a>
+      <a href="{% url 'about' %}">Profile</a>
+      <a href="{% url 'experience' %}">Timeline</a>
+      <a href="{% url 'projects' %}">Systems</a>
       <a href="{% url 'writing' %}">Writing</a>
       <a href="{% url 'resume' %}">Resume</a>
-      <a href="{% url 'contact' %}">Contact</a>
+      <a class="nav-cta" href="{% url 'contact' %}">Contact</a>
     </nav>
   </header>
 
@@ -55,15 +60,16 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="site-footer">
-    <div>
+  <footer class="site-footer reveal">
+    <div class="footer-card">
+      <p class="eyebrow">Next Signal</p>
       <strong>{{ profile.full_name|default:"Syed Huzaifa Bin Afzal" }}</strong>
       <span>Cloud infrastructure, cybersecurity leadership, writing, and legal analysis.</span>
-    </div>
-    <div class="footer-links">
-      {% if profile.email %}<a href="mailto:{{ profile.email }}">Email</a>{% endif %}
-      {% if profile.linkedin_url %}<a href="{{ profile.linkedin_url }}" rel="noopener">LinkedIn</a>{% endif %}
-      {% if profile.github_url %}<a href="{{ profile.github_url }}" rel="noopener">GitHub</a>{% endif %}
+      <div class="footer-links">
+        {% if profile.email %}<a href="mailto:{{ profile.email }}">Email</a>{% endif %}
+        {% if profile.linkedin_url %}<a href="{{ profile.linkedin_url }}" rel="noopener">LinkedIn</a>{% endif %}
+        {% if profile.github_url %}<a href="{{ profile.github_url }}" rel="noopener">GitHub</a>{% endif %}
+      </div>
     </div>
   </footer>
   <script src="{% static 'js/site.js' %}" defer></script>

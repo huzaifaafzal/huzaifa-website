@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="page-hero section">
+<section class="page-hero section reveal">
   <p class="eyebrow">{{ project.project_type }}</p>
   <h1>{{ project.title }}</h1>
   <p class="lead">{{ project.short_description }}</p>
   <div class="chip-row">{% for tech in project.technologies %}<span>{{ tech }}</span>{% endfor %}</div>
 </section>
-<section class="section detail-grid">
-  <article><h2>Problem</h2><p>{{ project.problem }}</p></article>
-  <article><h2>Solution</h2><p>{{ project.solution }}</p></article>
-  <article><h2>Impact</h2><p>{{ project.impact }}</p></article>
-  <article><h2>Details</h2><p>{{ project.full_description }}</p></article>
+<section class="section detail-grid reveal">
+  <article class="magnetic-card"><span>01</span><h2>Problem</h2><p>{{ project.problem }}</p></article>
+  <article class="magnetic-card"><span>02</span><h2>Solution</h2><p>{{ project.solution }}</p></article>
+  <article class="magnetic-card"><span>03</span><h2>Impact</h2><p>{{ project.impact }}</p></article>
+  <article class="magnetic-card"><span>04</span><h2>Details</h2><p>{{ project.full_description }}</p></article>
 </section>
 {% endblock %}

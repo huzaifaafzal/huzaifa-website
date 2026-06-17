@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="page-hero section">
-  <p class="eyebrow">Experience</p>
-  <h1>Experience timeline</h1>
+<section class="page-hero section reveal">
+  <p class="eyebrow">Experience Route</p>
+  <h1>Production timeline with signal, context, and receipts.</h1>
   <p class="lead">Cloud engineering, cybersecurity leadership study, journalism, and litigation-support analysis in one career narrative.</p>
 </section>
-<section class="section">
+<section class="section timeline-section reveal">
   <div class="timeline full">
     {% for experience in experiences %}
-      <article class="timeline-item">
+      <article class="timeline-item magnetic-card">
         <span class="timeline-dot"></span>
         <p class="eyebrow">{{ experience.get_category_display }}</p>
         <h2>{{ experience.title }}</h2>
