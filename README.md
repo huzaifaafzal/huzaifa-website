@@ -1,27 +1,175 @@
-# Resume + Job Application Website Package for Codex
+# Huzaifa Portfolio
 
-This package gives Codex everything it needs to create a polished personal website for **Syed Huzaifa Bin Afzal** focused on AI research, secure GenAI systems, DevOps, cloud infrastructure, and job applications.
+Premium dynamic portfolio for **Syed Huzaifa Bin Afzal**. The site is now a Django application built for Coolify on a DigitalOcean Droplet, with PostgreSQL, Docker, Gunicorn, WhiteNoise, Admin-managed content, resume uploads, and a polished recruiter-facing frontend.
 
-## What is included
+## What This Project Includes
 
-- `CODEX_WEBSITE_BUILD_PROMPT.md` — paste this into Codex as the main instruction.
-- `content/resume-data.json` — structured resume/profile content Codex must use as the source of truth.
-- `content/site-copy.md` — human-written website copy for the main sections.
-- `docs/design-brief.md` — visual and UX direction.
-- `docs/github-pages-deployment.md` — deployment steps for GitHub Pages.
-- `docs/namecheap-custom-domain.md` — exact Namecheap DNS and GitHub Pages custom-domain setup for `resume.huzaifaafzal.me`.
-- `src/index.html`, `src/styles.css`, `src/script.js` — a clean static starter site Codex can improve or convert to React/Next.js.
-- `assets/resumes/` — downloadable AI, DevOps, and master resume files.
+- Django 5 portfolio app with production settings
+- Admin-managed profile, metrics, experience, education, certifications, skills, projects, writing, resume files, and contact messages
+- Premium dark-first responsive UI with lightweight CSS and JavaScript
+- Contact form that saves messages to the database
+- Project and writing detail pages with slugs
+- Resume downloads for PDF and DOCX files
+- SEO basics: meta tags, canonical URL, Open Graph tags, robots.txt, sitemap.xml, and Person JSON-LD
+- Dockerfile and entrypoint for Coolify deployment
+- Seed command for polished starter content
 
-## Recommended workflow
+## Tech Stack
 
-1. Create a new GitHub repository, for example `huzaifa-portfolio`.
-2. Upload this package or open it in a Codex workspace.
-3. Paste the full contents of `CODEX_WEBSITE_BUILD_PROMPT.md` into Codex.
-4. Ask Codex to implement the website and commit the changes.
-5. Enable GitHub Pages from the repository settings.
-6. Connect the site to the Namecheap subdomain `resume.huzaifaafzal.me` using `docs/namecheap-custom-domain.md`.
+- Python 3.12
+- Django 5.x
+- PostgreSQL
+- Gunicorn
+- WhiteNoise
+- dj-database-url
+- Pillow
+- python-dotenv
+- Docker
+- Coolify reverse proxy and HTTPS
 
-## Important rule
+## Project Structure
 
-Do not let Codex invent extra employers, degrees, tools, metrics, publications, awards, or projects. The website should use only the content provided in this package unless Huzaifa manually adds more information.
+```text
+.
+|-- apps/
+|   |-- core/
+|   `-- portfolio/
+|       |-- management/commands/load_portfolio_seed.py
+|       |-- migrations/
+|       |-- admin.py
+|       |-- forms.py
+|       |-- models.py
+|       |-- urls.py
+|       `-- views.py
+|-- assets/
+|   |-- images/
+|   `-- resumes/
+|-- config/
+|   |-- settings.py
+|   |-- urls.py
+|   `-- wsgi.py
+|-- static/
+|   |-- css/site.css
+|   `-- js/site.js
+|-- templates/
+|-- Dockerfile
+|-- entrypoint.sh
+|-- manage.py
+|-- requirements.txt
+`-- DEPLOYMENT.md
+```
+
+The `assets/` folder is intentionally kept. It provides the existing abstract visual and resume files used by the app and seed command.
+
+## Environment Variables
+
+Copy `.env.example` to `.env` for local development, or add these in Coolify:
+
+```text
+DEBUG=False
+SECRET_KEY=replace-with-a-long-random-secret
+ALLOWED_HOSTS=resume.huzaifaafzal.me,localhost,127.0.0.1
+CSRF_TRUSTED_ORIGINS=https://resume.huzaifaafzal.me,http://localhost:8000,http://127.0.0.1:8000
+SITE_URL=https://resume.huzaifaafzal.me
+DATABASE_URL=postgres://USER:PASSWORD@HOST:5432/DATABASE
+LOAD_SEED_DATA=1
+GUNICORN_WORKERS=3
+GUNICORN_TIMEOUT=60
+```
+
+For production, use the internal PostgreSQL connection string provided by Coolify as `DATABASE_URL`.
+
+## Local Development
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+python manage.py migrate
+python manage.py load_portfolio_seed
+python manage.py createsuperuser
+python manage.py runserver 0.0.0.0:8000
+```
+
+Open:
+
+```text
+http://127.0.0.1:8000
+```
+
+Admin:
+
+```text
+http://127.0.0.1:8000/admin/
+```
+
+## Main Routes
+
+- `/`
+- `/about/`
+- `/experience/`
+- `/projects/`
+- `/projects/<slug>/`
+- `/writing/`
+- `/writing/<slug>/`
+- `/resume/`
+- `/contact/`
+- `/health/`
+- `/robots.txt`
+- `/sitemap.xml`
+
+## Seed Data
+
+Run this command to load polished starter content for Syed Huzaifa Bin Afzal:
+
+```bash
+python manage.py load_portfolio_seed
+```
+
+It creates or updates:
+
+- Profile
+- Impact metrics
+- Experience timeline and bullets
+- Education
+- Certifications
+- Skill categories and skills
+- Featured projects
+- Writing samples
+- Resume file records from `assets/resumes/`
+
+In Coolify, set `LOAD_SEED_DATA=1` for the first deployment. After the data appears, set it to `0` so later deploys do not refresh seed-managed records.
+
+## Coolify Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for the complete setup. Short version:
+
+1. Create a Coolify application from the GitHub repository.
+2. Deploy the `coolify` branch with the Dockerfile.
+3. Set app port to `8000`.
+4. Attach a separate Coolify PostgreSQL resource.
+5. Add persistent storage for `/app/media`.
+6. Add the domain `resume.huzaifaafzal.me`.
+7. Configure environment variables.
+8. Deploy.
+
+The container entrypoint runs migrations, collects static files, optionally loads seed data, and starts Gunicorn on `0.0.0.0:8000`.
+
+## Content Management
+
+Use Django Admin to keep the portfolio dynamic:
+
+- Edit the personal profile and hero badges
+- Add metrics for recruiter-facing proof points
+- Manage experience timeline entries and bullet points
+- Add or edit projects and case studies
+- Add writing and journalism entries
+- Upload active resume files as PDF or DOCX
+- Review contact form submissions
+
+Create the first admin user with:
+
+```bash
+python manage.py createsuperuser
+```

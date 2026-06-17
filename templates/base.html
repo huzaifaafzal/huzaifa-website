@@ -1,0 +1,71 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ meta_description }}">
+  <meta name="theme-color" content="#050914">
+  <link rel="canonical" href="{{ site_url }}{{ request.path }}">
+  <meta property="og:title" content="{% if page_title %}{{ page_title }} | {% endif %}{{ profile.full_name|default:'Syed Huzaifa Bin Afzal' }}">
+  <meta property="og:description" content="{{ meta_description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site_url }}{{ request.path }}">
+  <meta property="og:image" content="{{ site_url }}{% static 'images/secure-cloud-abstract.png' %}">
+  <title>{% if page_title %}{{ page_title }} | {% endif %}{{ profile.full_name|default:"Syed Huzaifa Bin Afzal" }}</title>
+  <link rel="preload" as="image" href="{% static 'images/secure-cloud-abstract.png' %}">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ profile.full_name|default:'Syed Huzaifa Bin Afzal'|escapejs }}",
+    "jobTitle": "{{ profile.headline|default:'AWS Cloud/DevOps Engineer'|escapejs }}",
+    "url": "{{ site_url }}",
+    "email": "{{ profile.email|default:'huzaifaafzal10@gmail.com'|escapejs }}",
+    "sameAs": ["{{ profile.linkedin_url|default:''|escapejs }}", "{{ profile.github_url|default:''|escapejs }}"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="{% url 'home' %}" aria-label="Syed Huzaifa Bin Afzal home">
+      <span class="brand-mark" aria-hidden="true">HA</span>
+      <span>Huzaifa Afzal</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">Menu</button>
+    <nav id="site-nav" aria-label="Primary navigation">
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'experience' %}">Experience</a>
+      <a href="{% url 'projects' %}">Projects</a>
+      <a href="{% url 'writing' %}">Writing</a>
+      <a href="{% url 'resume' %}">Resume</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+  </header>
+
+  {% if messages %}
+    <div class="message-stack" role="status" aria-live="polite">
+      {% for message in messages %}<p class="message {{ message.tags }}">{{ message }}</p>{% endfor %}
+    </div>
+  {% endif %}
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>{{ profile.full_name|default:"Syed Huzaifa Bin Afzal" }}</strong>
+      <span>Cloud infrastructure, cybersecurity leadership, writing, and legal analysis.</span>
+    </div>
+    <div class="footer-links">
+      {% if profile.email %}<a href="mailto:{{ profile.email }}">Email</a>{% endif %}
+      {% if profile.linkedin_url %}<a href="{{ profile.linkedin_url }}" rel="noopener">LinkedIn</a>{% endif %}
+      {% if profile.github_url %}<a href="{{ profile.github_url }}" rel="noopener">GitHub</a>{% endif %}
+    </div>
+  </footer>
+  <script src="{% static 'js/site.js' %}" defer></script>
+</body>
+</html>

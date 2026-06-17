@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero section">
+  <p class="eyebrow">Writing</p>
+  <h1>Journalism, AI reporting, and technical translation</h1>
+  <p class="lead">Writing work that supports a technical profile: campus news, IT and AI developments, executive interviews, podcast conversations, and structured public explanation.</p>
+</section>
+<section class="section">
+  <div class="article-grid">
+    {% for article in articles %}
+      <article>
+        <span>{{ article.publication }}</span>
+        <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+        <p>{{ article.summary }}</p>
+        {% if article.external_url %}<a class="text-link" href="{{ article.external_url }}" rel="noopener">Read externally</a>{% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

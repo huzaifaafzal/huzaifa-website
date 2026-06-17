@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="hero section-band">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Cloud command center / Cybersecurity / Technical writing / Legal analysis</p>
+      <h1>Cloud, Cybersecurity, and Systems Builder</h1>
+      <p class="hero-subhead">{{ profile.subheadline }}</p>
+      <p class="lead">{{ profile.short_bio }}</p>
+      <div class="hero-badges" aria-label="Profile badges">
+        {% for badge in profile.hero_badges %}<span>{{ badge }}</span>{% endfor %}
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="{% url 'projects' %}">View Projects</a>
+        <a class="button" href="{% url 'resume' %}">Download Resume</a>
+        <a class="button ghost" href="{% url 'contact' %}">Contact Me</a>
+        {% if profile.linkedin_url %}<a class="icon-button" href="{{ profile.linkedin_url }}" aria-label="LinkedIn">in</a>{% endif %}
+        {% if profile.github_url %}<a class="icon-button" href="{{ profile.github_url }}" aria-label="GitHub">GH</a>{% endif %}
+      </div>
+    </div>
+    <aside class="command-card" aria-label="Cloud infrastructure profile summary">
+      <img src="{% static 'images/secure-cloud-abstract.png' %}" alt="" width="1600" height="1050" loading="eager">
+      <div class="console-line"><span>identity</span><strong>{{ profile.headline }}</strong></div>
+      <div class="console-grid">
+        <span>AWS</span><span>Terraform</span><span>Kubernetes</span><span>Django</span>
+        <span>Security</span><span>Journalism</span><span>Legal Drafting</span><span>UW MCL</span>
+      </div>
+      <p>{{ profile.long_bio }}</p>
+    </aside>
+  </div>
+</section>
+
+<section class="trust-bar" aria-label="Key strengths">
+  <span>Production AWS</span>
+  <span>Infrastructure as Code</span>
+  <span>Cybersecurity Leadership</span>
+  <span>Technical Journalism</span>
+  <span>Litigation Support</span>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Impact Snapshot</p>
+    <h2>Signals recruiters can scan in ten seconds.</h2>
+  </div>
+  <div class="metric-grid">
+    {% for metric in metrics %}
+      <article class="metric-card">
+        <strong>{{ metric.value }}</strong>
+        <h3>{{ metric.label }}</h3>
+        <p>{{ metric.description }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section split">
+  <div class="section-heading">
+    <p class="eyebrow">Professional Operating System</p>
+    <h2>Four lenses, one coherent profile.</h2>
+  </div>
+  <div class="identity-grid">
+    <article><span>01</span><h3>Cloud Infrastructure Engineer</h3><p>Builds production-minded AWS systems, Terraform workflows, monitoring, deployment paths, and reliability patterns.</p></article>
+    <article><span>02</span><h3>Cybersecurity & Leadership</h3><p>Frames infrastructure decisions through access control, secure AI adoption, risk, governance, and operational maturity.</p></article>
+    <article><span>03</span><h3>Builder / Django Developer</h3><p>Turns static professional presence into Admin-managed systems with clean data models, forms, deployment, and maintenance paths.</p></article>
+    <article><span>04</span><h3>Writer / Legal Analyst</h3><p>Converts complex records, technical systems, and institutional stories into clear, structured, high-trust writing.</p></article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading wide">
+    <p class="eyebrow">Featured Projects</p>
+    <h2>Case-study style evidence, managed from Django Admin.</h2>
+  </div>
+  <div class="project-grid">
+    {% for project in projects %}
+      <article class="project-card">
+        <div class="visual-panel"><span>{{ project.project_type }}</span></div>
+        <h3><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h3>
+        <p>{{ project.short_description }}</p>
+        <div class="chip-row">
+          {% for tech in project.technologies %}<span>{{ tech }}</span>{% endfor %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section split">
+  <div class="section-heading">
+    <p class="eyebrow">Experience Timeline</p>
+    <h2>Production work plus communication depth.</h2>
+  </div>
+  <div class="timeline">
+    {% for experience in experiences %}
+      <article class="timeline-item">
+        <span class="timeline-dot"></span>
+        <p class="eyebrow">{{ experience.get_category_display }}</p>
+        <h3>{{ experience.title }}</h3>
+        <strong>{{ experience.company }}</strong>
+        <p>{{ experience.summary }}</p>
+        <ul>
+          {% for bullet in experience.bullets.all %}<li>{{ bullet.text }}</li>{% endfor %}
+        </ul>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section split reverse">
+  <div class="section-heading">
+    <p class="eyebrow">Skills Matrix</p>
+    <h2>Cloud depth without buzzword fog.</h2>
+  </div>
+  <div class="skill-matrix">
+    {% for category in skill_categories %}
+      <article class="skill-card">
+        <h3>{{ category.name }}</h3>
+        <p>{{ category.description }}</p>
+        <div class="chip-row">
+          {% for skill in category.skills.all %}<span>{{ skill.name }}</span>{% endfor %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="editorial-band">
+    <div>
+      <p class="eyebrow">Writing, Journalism, and Legal Analysis</p>
+      <h2>Clear thinking under technical and factual pressure.</h2>
+      <p>UW reporting, executive interviews, podcast conversations, legal drafting, discovery review, issue spotting, factual synthesis, and client communications are presented as communication assets rather than a separate identity.</p>
+    </div>
+    <div class="article-stack">
+      {% for article in articles %}
+        <article>
+          <span>{{ article.publication }}</span>
+          <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+          <p>{{ article.summary }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section cta-panel">
+  <div>
+    <p class="eyebrow">Resume + Contact</p>
+    <h2>Ready for recruiter review and technical conversations.</h2>
+    <p>{{ profile.resume_summary }}</p>
+  </div>
+  <div class="resume-actions">
+    {% for resume in resumes %}
+      <a class="button" href="{{ resume.file.url }}" download>{{ resume.title }} <span>{{ resume.file_type }}</span></a>
+    {% endfor %}
+    <a class="button primary" href="{% url 'contact' %}">Contact Me</a>
+  </div>
+</section>
+{% endblock %}

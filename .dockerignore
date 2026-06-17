@@ -1,0 +1,9 @@
+.git
+.agents
+.codex
+db.sqlite3
+staticfiles
+media
+*.pyc
+__pycache__/
+.env

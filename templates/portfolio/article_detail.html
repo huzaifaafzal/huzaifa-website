@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero section">
+  <p class="eyebrow">{{ article.publication }}</p>
+  <h1>{{ article.title }}</h1>
+  <p class="lead">{{ article.summary }}</p>
+  {% if article.external_url %}<a class="button primary" href="{{ article.external_url }}" rel="noopener">Read original</a>{% endif %}
+</section>
+{% if article.body %}
+  <section class="section prose">{{ article.body|linebreaks }}</section>
+{% endif %}
+{% endblock %}

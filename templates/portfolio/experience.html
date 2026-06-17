@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero section">
+  <p class="eyebrow">Experience</p>
+  <h1>Experience timeline</h1>
+  <p class="lead">Cloud engineering, cybersecurity leadership study, journalism, and litigation-support analysis in one career narrative.</p>
+</section>
+<section class="section">
+  <div class="timeline full">
+    {% for experience in experiences %}
+      <article class="timeline-item">
+        <span class="timeline-dot"></span>
+        <p class="eyebrow">{{ experience.get_category_display }}</p>
+        <h2>{{ experience.title }}</h2>
+        <strong>{{ experience.company }}{% if experience.location %} / {{ experience.location }}{% endif %}</strong>
+        <p>{{ experience.summary }}</p>
+        <ul>{% for bullet in experience.bullets.all %}<li>{{ bullet.text }}</li>{% endfor %}</ul>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

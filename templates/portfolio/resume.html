@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero section">
+  <p class="eyebrow">Resume</p>
+  <h1>Resume downloads</h1>
+  <p class="lead">{{ profile.resume_summary }}</p>
+</section>
+<section class="section">
+  <div class="resume-grid">
+    {% for resume in resumes %}
+      <article class="resume-card">
+        <span>{{ resume.file_type }}{% if forloop.first %} / Latest active{% endif %}</span>
+        <h2>{{ resume.title }}</h2>
+        <a class="button primary" href="{{ resume.file.url }}" download>Download</a>
+      </article>
+    {% empty %}
+      <p>No active resume files have been uploaded yet.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

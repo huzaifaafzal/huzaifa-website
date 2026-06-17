@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero section">
+  <p class="eyebrow">Projects</p>
+  <h1>Technical projects and case studies</h1>
+  <p class="lead">Admin-managed work samples covering Django, cloud infrastructure, Kubernetes, disaster recovery, cost optimization, and technical communication.</p>
+</section>
+<section class="section">
+  <div class="project-grid">
+    {% for project in projects %}
+      <article class="project-card">
+        <div class="visual-panel"><span>{{ project.project_type }}</span></div>
+        <h2><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h2>
+        <p>{{ project.short_description }}</p>
+        <div class="chip-row">{% for tech in project.technologies %}<span>{{ tech }}</span>{% endfor %}</div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
