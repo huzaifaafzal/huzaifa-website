@@ -52,7 +52,7 @@ class Command(BaseCommand):
                 "email": "huzaifaafzal10@gmail.com",
                 "phone": "+1 (206) 750-5956",
                 "linkedin_url": "https://www.linkedin.com/in/syed-huzaifa-bin-afzal",
-                "github_url": "",
+                "github_url": "https://github.com/huzaifaafzal",
                 "short_bio": (
                     "AWS Cloud/DevOps engineer with 6+ years of experience, Master of Cybersecurity & "
                     "Leadership candidate at the University of Washington, AI builder, researcher, and student journalist."
